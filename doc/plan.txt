@@ -1,0 +1,18 @@
+collect
+    fetch new
+        store
+    new - task
+        email
+        rss
+        ?push
+    remove old - task
+process
+    select last
+    select difference
+provide
+    api catalog
+    email
+    rss
+configuration
+    private
+    global
