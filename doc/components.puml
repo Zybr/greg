@@ -1,0 +1,25 @@
+@startuml
+
+package Crawling {
+    [crawling] -- [Spider]
+    [Spider] -- [Crawler]
+    [Spider] -- [Parser]
+}
+
+package DB {
+    [Spider] -- [catalog]
+    [source] -- [catalog]
+    [crawling] -- [source]
+}
+
+package Provide {
+    [api] --- [catalog]
+}
+
+package Configuration {
+    [global] -- [crawling]
+    [global] -- [schedule]
+    [schedule] -- [crawling]
+}
+
+@enduml

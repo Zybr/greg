@@ -1,0 +1,38 @@
+@startuml
+note right of Spider
+config: {
+    number: integer
+    url: string
+    crawl {
+        parse {
+            item{
+                selector: selector
+                fields {
+                    [field] : selector
+                }
+            }
+            next: selector
+        }
+    }
+}
+end note
+
+class Spider {
+    baseUrl: string
+    itemsNumber: int
+    collect() : Stream<Item>
+}
+
+class Crawler {
+    crawl(url) : Stream<Item>
+}
+
+class Parser {
+    parseItems(text) : Promise<Item[]>
+    parseNextUrl(): Promise<string>
+}
+
+Spider *-down- Crawler
+Crawler *-down- Parser
+
+@enduml

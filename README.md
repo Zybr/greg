@@ -3,8 +3,7 @@
 + cd aggregator
 + git init
 + git remote add origin git@github.com:Zybr/aggregator.git
-+ git pull
-+ git checkout master
++ git pull origin master
 
 ## Install global packages
 ### MongoDB
