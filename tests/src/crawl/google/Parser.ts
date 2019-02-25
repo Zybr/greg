@@ -6,9 +6,11 @@ import {Parser} from "../../../../src/crawl/google/Parser";
 import {OK} from "http-status-codes";
 import supertest = require("supertest");
 import superagent, {Response} from "supertest";
+import {Colorizer} from "../../../../src/core/Colorizer";
 import {ErrorProcessor} from "../../../../src/core/ErrorProcessor";
 
 should();
+Colorizer.color();
 
 describe("google/Parser", () => {
     const baseUrl = "http://data/google";

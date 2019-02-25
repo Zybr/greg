@@ -8,8 +8,10 @@ import {app} from "../app";
 
 import debugMod = require("debug");
 import http = require("http");
+import {Colorizer} from "../src/core/Colorizer";
 
 const debug = debugMod("aggregator:server");
+Colorizer.color();
 
 /**
  * Get port from environment and store in Express.
