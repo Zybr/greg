@@ -4,8 +4,9 @@ import {Parser} from "../../../../src/crawl/google/Parser";
 
 // const statusCodes = require('http-status-codes');
 import {OK} from "http-status-codes";
+import superagent = require("superagent");
 import supertest = require("supertest");
-import superagent, {Response} from "supertest";
+// import {request} from "superagent";
 import {Colorizer} from "../../../../src/core/Colorizer";
 import {ErrorProcessor} from "../../../../src/core/ErrorProcessor";
 
@@ -13,29 +14,30 @@ should();
 Colorizer.color();
 
 describe("google/Parser", () => {
-    const baseUrl = "http://data/google";
+    // const baseUrl = "http://data/google";
+    const baseUrl = "http://test.loc/google";
     const parser: Parser = new Parser();
-    // let content: string;
+    const prepares = [];
 
     before(() => {
-        superagent(app)
+        const contentPromise = superagent
             .get(baseUrl)
-            .then((response: Response) => {
-                if (response.status !== OK) {
-                    throw new Error(`Can not get test content. Returned response with status ${response.status}`);
-                }
+            .then((response: any) => parser.setContent(response.text))
+            .catch(ErrorProcessor.handleCliError);
 
-                parser.setContent(response.text);
-            }).catch(ErrorProcessor.handleCliError);
+        prepares.push(contentPromise);
     });
 
     describe("Parser", () => {
         it("parserItems() should return list of items", () => {
-            parser
-                .parseItems()
-                .then((items) => {
-                    items.should.be.an("array");
-                });
+            Promise.all(prepares).then(() => {
+                parser
+                    .parse()
+                    .then((items) => {
+                        items.should.be.an("array")
+                            .length(10);
+                    });
+            });
         });
     });
 });
