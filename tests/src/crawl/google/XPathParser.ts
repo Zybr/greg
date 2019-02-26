@@ -3,13 +3,13 @@ import superagent = require("superagent");
 import config = require("../../../../config/test.js");
 import {Colorizer} from "../../../../src/core/Colorizer";
 import {ErrorProcessor} from "../../../../src/core/ErrorProcessor";
-import {Parser} from "../../../../src/crawl/google/Parser";
+import {XPathParser} from "../../../../src/crawl/google/XPathParser";
 
 should();
 Colorizer.color();
 
-describe("google/XpathParser", () => {
-    const parser: Parser = new Parser();
+describe("google/XPathParser", () => {
+    const parser: XPathParser = new XPathParser();
     const prepares = [];
 
     before(() => {
@@ -21,7 +21,7 @@ describe("google/XpathParser", () => {
         prepares.push(contentPromise);
     });
 
-    describe("XpathParser", () => {
+    describe("XPathParser", () => {
         it("parser() should return list of items", () => {
             Promise.all(prepares).then(() => {
                 parser
