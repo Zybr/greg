@@ -7,6 +7,7 @@ import logger = require("morgan");
 import path = require("path");
 
 import {router as rootRouter} from "./routes/index";
+import {router as testRouter} from "./routes/test";
 
 const app: Express = express();
 
@@ -21,6 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", rootRouter);
+app.use("/test", testRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

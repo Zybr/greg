@@ -1,4 +1,4 @@
 module.exports = {
-    // const baseUrl = "http://test.loc/google";
-    resourceBaseUrl: "http://data"
+    // resourceBaseUrl: "http://test.loc/google",
+    resourceBaseUrl: "http://data",
 };

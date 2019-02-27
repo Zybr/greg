@@ -3,7 +3,7 @@ import {DOMParser} from "xmldom";
 import {select} from "xpath";
 import {IParser} from "../types/IParser";
 
-export class XPathParser implements IParser {
+class XPathParser implements IParser {
     private content: DOMParser;
 
     // private config: object = {
@@ -51,7 +51,7 @@ export class XPathParser implements IParser {
             throw Error("Content is not defined.");
         }
 
-        let items: any[] = select("//*[@id=\"rso\"]/div/div/div", this.content);
+        const items: any[] = select("//*[@id=\"rso\"]/div/div/div", this.content);
         // let items: any[] = this.content("#rso").find("> div > div > div").toArray();
         // items.every((item, index, array) => {
         //     item = this.parserItem(item);
