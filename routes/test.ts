@@ -4,7 +4,7 @@ import superagent = require("superagent");
 import config = require("../config/test.js");
 import {Colorizer} from "../src/core/Colorizer";
 import {ErrorProcessor} from "../src/core/ErrorProcessor";
-import {Parser} from "../src/crawl/google/Parser";
+import {Parser} from "../src/crawl/parser/Parser";
 
 const router = express.Router();
 

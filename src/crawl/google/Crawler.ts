@@ -1,7 +1,7 @@
 import {Observable} from "rxjs";
-import {ICrawler} from "../types/ICrawler";
-import {IParser} from "../types/IParser";
-import {Parser} from "./Parser";
+import {ICrawler} from "../ICrawler";
+import {Parser} from "../parser/Parser";
+import {IParser} from "../parser/types/IParser";
 
 /**
  * Google Crawler
@@ -19,7 +19,7 @@ export class Crawler implements ICrawler {
     }
 
     /**
-     *
+     * Crawl source.
      */
     public crawl(): Observable<object> {
         return new Observable();

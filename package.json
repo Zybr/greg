@@ -6,7 +6,8 @@
     "start": "ts-node-dev ./bin/www",
     "code-style": "tslint '{bin,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json",
     "code-style-fix": "tslint '{bin,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json --fix",
-    "test": "mocha -r ts-node/register tests/**/*.ts"
+    "test": "mocha -r ts-node/register tests/**/*.ts",
+    "test-debug": "DEBUG=test mocha -r ts-node/register tests/**/*.ts"
   },
   "dependencies": {
     "@types/cheerio": "^0.22.10",

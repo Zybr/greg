@@ -1,7 +1,7 @@
 import cheerio from "cheerio";
 import {DOMParser} from "xmldom";
 import {select} from "xpath";
-import {IParser} from "../types/IParser";
+import {IParser} from "./types/IParser";
 
 class XPathParser implements IParser {
     private content: DOMParser;
@@ -13,18 +13,18 @@ class XPathParser implements IParser {
     //             snippet: "snippet | html",
     //             title: "h3 | text",
     //         },
-    //         selector: "div",
+    //         query: "div",
     //     },
     //     "nextPage": {
-    //         selector: "div.navigation > a",
+    //         query: "div.navigation > a",
     //     },
     // };
 
     public setContent(content: string): this {
-        // this.content = new dom().parserF
-        // content = "<book><title>Harry Potter</title></book>";
+        // this.query = new dom().parserF
+        // query = "<book><title>Harry Potter</title></book>";
         const doc = new DOMParser().parseFromString(content, null);
-        // const doc = new DOMParser().parseFromString(content, "text/xml");
+        // const doc = new DOMParser().parseFromString(query, "text/xml");
         this.content = doc;
 
         // this.test();
@@ -52,7 +52,7 @@ class XPathParser implements IParser {
         }
 
         const items: any[] = select("//*[@id=\"rso\"]/div/div/div", this.content);
-        // let items: any[] = this.content("#rso").find("> div > div > div").toArray();
+        // let items: any[] = this.query("#rso").find("> div > div > div").toArray();
         // items.every((item, index, array) => {
         //     item = this.parserItem(item);
         // });
@@ -66,7 +66,7 @@ class XPathParser implements IParser {
     }
 
     private parserItem(node: Element) {
-        // const node = this.content(node);
+        // const node = this.query(node);
         const title = select("//*/h3[1]/text()[1]", node, true);
         const link = select("//*/div/div/div[1]/a[1]/@href", node, true);
         const snippet = select("*/div/div/div[2]/div/span/text()[1]", node, true);
