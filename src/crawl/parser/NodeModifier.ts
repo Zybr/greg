@@ -15,7 +15,7 @@ export class NodeModifier {
     /**
      * Name of modifiers which can apply to element.
      */
-    private readonly QL_MODS = ["first", "html", "text", "attr"];
+    private readonly QL_MODS = ["first", "html", "text", "attr", "last"];
 
     /**
      * Constructor.
@@ -75,9 +75,9 @@ export class NodeModifier {
 
         }
 
-        // Convert result to string.
+        // Typify result.
 
-        if (null === elem) {
+        if (null === elem || undefined === elem) {
             return null;
         }
 

@@ -1,5 +1,4 @@
 import cheerio from "cheerio";
-import * as Cheerio from "cheerio";
 import {NodeModifier} from "./NodeModifier";
 import {IDaSelector} from "./types/html-selectors/IDaSelector";
 import {ISelector} from "./types/html-selectors/ISelector";
@@ -30,36 +29,28 @@ export class Parser implements IParser {
     /**
      * Map(tree) of selectors mapped by name.
      */
-    private selectorsMap: ISelectorsMap;
+    private readonly selectorsMap: ISelectorsMap = {};
 
     /**
-     * Set target content.
-     *
-     * @param content
-     */
-    public setContent(content: string): this {
-        this.ql = cheerio.load(content, {
-            decodeEntities: false,
-        });
-
-        this.converter = new NodeModifier(this.ql);
-
-        return this;
-    }
-
-    /**
-     * Set map of selectors.
+     * Constructor.
      *
      * @param selectorsMap
      */
-    public setSelectorMap(selectorsMap: ISelectorsMap) {
+    public constructor(selectorsMap: ISelectorsMap) {
         this.selectorsMap = selectorsMap;
     }
 
     /**
      * Parser all by set map of selectors.
+     *
+     * @param content
      */
-    public parse(): Promise<object> {
+    public parse(content: string): Promise<object> {
+        this.ql = cheerio.load(content, {
+            decodeEntities: false,
+        });
+        this.converter = new NodeModifier(this.ql);
+
         if (!this.ql) {
             throw Error("Content is not defined.");
         }
@@ -96,8 +87,13 @@ export class Parser implements IParser {
             nodes = this.ql(selector.query);
         }
 
-        if (selector.modifiers.length && selector.modifiers[0].name === "[]") { // Process single node.
-            return nodes.toArray().map((element: CheerioElement) => {
+        if (selector.modifiers.length && selector.modifiers[0].name === "[]") { // Process collection of nodes.
+            if (selector.modifiers[0].parameters.length) { // Node by index.
+                const index = parseInt(selector.modifiers[0].parameters[0], 10);
+                return this.converter.convert(nodes.eq(index)[0], selector.modifiers.splice(1));
+            }
+
+            return nodes.toArray().map((element: CheerioElement) => { // All nodes.
                 if (Object.keys(selector.properties).length) {
                     return this.parserNode(element, selector.properties);
                 }

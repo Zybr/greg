@@ -14,10 +14,11 @@ router.get("/", (req, res, next) => {
     const contentPromise = superagent
         .get(config.resourceBaseUrl + "/google")
         .then((response: any) => {
-            const parser: Parser = new Parser();
-            parser.setContent(response.text);
-            const items = parser.parse();
-            const bp = true;
+            // const parser: Parser = new Parser();
+            // parser.setContent(response.text);
+            // const items = parser.parse();
+            // const bp = true;
+            return "";
         })
         .catch(ErrorProcessor.handleCliError);
 
