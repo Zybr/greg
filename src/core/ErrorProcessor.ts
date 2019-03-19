@@ -14,8 +14,7 @@ export class ErrorProcessor {
      * @param addMessage
      */
     public static handleCliError(err: Error, addMessage: string = null) {
-        const message = (addMessage ? (addMessage + " ") : "") + err.message;
-        console.error(message, err.stack);
+        console.error(addMessage, err.stack);
     }
 
     /**
