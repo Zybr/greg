@@ -1,23 +1,17 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
-
-import {app} from "../app";
-
 import debugMod = require("debug");
 import http = require("http");
+import io = require("socket.io");
+import {app} from "../app";
 import {Colorizer} from "../src/core/Colorizer";
 
-const debug = debugMod("aggregator:server");
+const debug = debugMod("server");
 Colorizer.color();
 
 /**
  * Get port from environment and store in Express.
  */
 
-const port: string | null = normalizePort(process.env.PORT || "3000");
+const port: number = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
 /**
@@ -25,6 +19,13 @@ app.set("port", port);
  */
 
 const server = http.createServer(app);
+const socketIo = io(server);
+socketIo.on("connection", (client) => {
+    client.on("event", (data) => {
+        console.log(data);
+    });
+});
+socketIo.listen(port + 1);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -35,30 +36,17 @@ server.on("error", onError);
 server.on("listening", onListening);
 
 /**
- * Normalize a port into a number, string, or false.
+ * Normalize a port into a number.
  */
-
-function normalizePort(val) {
-    const portNumber = parseInt(val, 10);
-
-    if (isNaN(portNumber)) {
-        // named pipe
-        return val;
-    }
-
-    if (portNumber >= 0) {
-        // port number
-        return portNumber;
-    }
-
-    return false;
+function normalizePort(val: string): number {
+    return parseInt(val, 10);
 }
 
 /**
  * Event listener for HTTP server "error" event.
  */
 
-function onError(error) {
+function onError(error: any) {
     if (error.syscall !== "listen") {
         throw error;
     }
