@@ -1,9 +1,9 @@
 {
-  "name": "aggregator",
+  "name": "greg-back",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "ts-node-dev ./bin/www",
+    "start": "PORT=3000 ts-node-dev ./bin/www",
     "code-style": "tslint '{bin,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json",
     "code-style-fix": "tslint '{bin,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json --fix",
     "test": "mocha -r ts-node/register tests/**/*.ts",
@@ -22,7 +22,6 @@
     "http-status-codes": "^1.3.0",
     "mongoose": "^5.4.14",
     "morgan": "~1.9.0",
-    "pug": "^2.0.3",
     "rxjs": "^6.4.0",
     "ts-node": "^8.0.2",
     "tspath": "^1.3.7",
@@ -48,13 +47,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Zybr/aggregator.git"
+    "url": "git+https://github.com/Zybr/greg.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Zybr/aggregator/issues"
+    "url": "https://github.com/Zybr/greg/issues"
   },
-  "homepage": "https://github.com/Zybr/aggregator#readme",
+  "homepage": "https://github.com/Zybr/greg#readme",
   "description": ""
 }

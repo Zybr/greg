@@ -1,13 +1,11 @@
-import {Express} from "express";
-
 import cookieParser = require("cookie-parser");
+import {Express} from "express";
 import express = require("express");
 import createError = require("http-errors");
 import logger = require("morgan");
 import path = require("path");
-
-import {router as rootRouter} from "./routes/index";
-import {router as testRouter} from "./routes/test";
+import {router as indexRouter} from "./routes/index";
+import {router as socketRouter} from "./routes/socket";
 
 const app: Express = express();
 
@@ -19,25 +17,25 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, "public")));
+app.use("/public", express.static(path.join(__dirname, "dist")));
 
-app.use("/", rootRouter);
-app.use("/test", testRouter);
+app.use("/", indexRouter);
+app.use("/socket", socketRouter);
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
+app.use((request, response, next) => {
     next(createError(404));
 });
 
 // error handler
-app.use((err, req, res, next) => {
+app.use((error, request, response, next) => {
     // set locals, only providing error in development
-    res.locals.message = err.message;
-    res.locals.error = req.app.get("env") === "development" ? err : {};
+    response.locals.message = error.message;
+    response.locals.error = request.app.get("env") === "development" ? error : {};
 
     // render the error page
-    res.status(err.status || 500);
-    res.render("error");
+    response.status(error.status || 500);
+    response.render("core/error");
 });
 
 export {app};

@@ -1,24 +1,23 @@
 ## Upload project
-+ mkdir aggregator
-+ cd aggregator
-+ git init
-+ git remote add origin git@github.com:Zybr/aggregator.git
-+ git branch --set-upstream-to=origin/master
-+ git pull
+    mkdir greg
+    cd greg
+    git init
+    git remote add origin git@github.com:Zybr/greg.git
+    git branch --set-upstream-to=origin/master
+    git pull
 
-## Install global packages
-### MongoDB
-...
-### NPM modules
-+ npm install -g typescript
-+ npm install -g ts-node
-+ npm install -g ts-node-dev
+## Back (folder "back")
+### Install packages
+    npm install -g typescript # Global Typescript
+    npm install -g ts-node # Global Typescript interpreter
+    npm install -g ts-node-dev # Global Typescript interpreter (live watch)
+    npm install # Local packages
+### Start
+    npm start # Start server
 
-## Install back-end packages
-+ npm install
-
-## Install front-end packages
-...
-
-## Start
-+ npm start
+## Front (folder "front")
+### Install packages
+    npm install # Local packages
+### Start
+    npm start # Start server
+    npm run build # Decode (TS, styles, etc.) and build dependences (live watch) 
