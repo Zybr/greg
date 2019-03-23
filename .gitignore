@@ -1,6 +1,4 @@
 .idea
-back/dist/
-back/config/test.ts
-back/node_modules
-front/dist/
-front/node_modules
+node_modules
+dist/
+config/test.js
