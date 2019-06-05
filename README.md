@@ -14,6 +14,8 @@
     npm install # Local packages
 ### Start
     npm start # Start server
+### Test
+    npm test
 
 ## Front (folder "front")
 ### Install packages

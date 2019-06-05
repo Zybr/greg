@@ -3,8 +3,11 @@
  */
 import * as Cheerio from "cheerio";
 import {isCheerio} from "./types/CheerioDetector";
-import {IModifier} from "./types/html-selectors/IModifier";
+import {IModifier} from "./types/html-selectors";
 
+/**
+ * Modifier of selector.
+ */
 export class NodeModifier {
     /**
      * Query language.
@@ -12,9 +15,7 @@ export class NodeModifier {
      */
     private readonly ql: CheerioStatic;
 
-    /**
-     * Name of modifiers which can apply to element.
-     */
+    /** Name of modifiers which can apply to element. */
     private readonly QL_MODS = ["first", "html", "text", "attr", "last"];
 
     /**

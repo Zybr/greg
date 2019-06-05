@@ -1,5 +1,4 @@
 import {Request, Response} from "express";
-import {iCallable} from "./types/iCallable";
 
 import {INTERNAL_SERVER_ERROR} from "http-status-codes";
 
@@ -43,7 +42,7 @@ export class ErrorProcessor {
      * @param res
      * @param next
      */
-    public static handleAppError(err: Error, req: Request, res: Response, next: iCallable) {
+    public static handleAppError(err: Error, req: Request, res: Response, next: CallableFunction) {
         console.error("Application error. " + err.stack);
         res.status(500)
             .json({

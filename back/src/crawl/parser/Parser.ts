@@ -1,8 +1,10 @@
-import cheerio from "cheerio";
+import cheerio = require("cheerio");
 import {NodeModifier} from "./NodeModifier";
-import {IDaSelector} from "./types/html-selectors/IDaSelector";
-import {ISelector} from "./types/html-selectors/ISelector";
-import {ISelectorsMap} from "./types/html-selectors/ISelectorsMap";
+import {
+    IDaSelector,
+    ISelector,
+    ISelectorsMap,
+} from "./types/html-selectors";
 import {IParser} from "./types/IParser";
 
 /**
@@ -16,19 +18,13 @@ export class Parser implements IParser {
      */
     private ql: CheerioStatic;
 
-    /**
-     * Converter.
-     */
+    /** Converter. */
     private converter: NodeModifier;
 
-    /**
-     * Delimiter for modifiers.
-     */
+    /** Delimiter for modifiers. */
     private readonly MODIFIER_SPLITTER = "|";
 
-    /**
-     * Map(tree) of selectors mapped by name.
-     */
+    /** Map(tree) of selectors mapped by name. */
     private readonly selectorsMap: ISelectorsMap = {};
 
     /**
@@ -188,5 +184,4 @@ export class Parser implements IParser {
             query,
         };
     }
-
 }

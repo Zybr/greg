@@ -1,3 +1,2 @@
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("Index is loaded.");
-});
+import * as socket from "./test/socket/index";
+socket.init();

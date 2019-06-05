@@ -1,11 +1,11 @@
-import chai from "chai";
+import * as chai from "chai";
 import {should} from "chai";
 import chaiString = require("chai-string");
 import debugMod = require("debug");
 import {readFileSync} from "fs";
 import {Colorizer} from "../../../../src/core/Colorizer";
 import {Parser} from "../../../../src/crawl/parser/Parser";
-import {ISelectorsMap} from "../../../../src/crawl/parser/types/html-selectors/ISelectorsMap";
+import {ISelectorsMap} from "../../../../src/crawl/parser/types/html-selectors";
 
 const debug = debugMod("test:parser");
 const pathTestData = __dirname + "/../../../data/";
@@ -14,7 +14,7 @@ chai.use(chaiString);
 should();
 Colorizer.color();
 
-describe("Parser (NodeModifier).", () => {
+describe("Parser [+ NodeModifier]", () => {
     const selectorsMap: ISelectorsMap = {
         collections: {
             properties: {
@@ -24,6 +24,9 @@ describe("Parser (NodeModifier).", () => {
                 postModifier: {
                     query: "ul.links > li | [] | html",
                 },
+                // postPath: { // It does not work.
+                //     query: "ul.links > li | [] | a",
+                // },
                 structure: {
                     properties: {
                         link: ".link",
@@ -53,7 +56,8 @@ describe("Parser (NodeModifier).", () => {
     const content = readFileSync(`${pathTestData}/markup/elements.html`).toString();
 
     describe(".parse()", () => {
-        it("Should return result according request", async () => {
+        it("Should promise result according request.", async () => {
+            debug(".parse()");
             const result: {
                 collections?: {
                     index?: any,
@@ -77,7 +81,10 @@ describe("Parser (NodeModifier).", () => {
                     text?: any,
                 },
             } = await parser
-                .parse(content);
+                .parse(content)
+                .catch(() => {
+                    throw new Error("Parsing error.");
+                });
 
             debug(JSON.stringify(result, null, 4));
 

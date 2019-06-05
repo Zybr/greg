@@ -3,6 +3,7 @@ import http = require("http");
 import io = require("socket.io");
 import {app} from "../app";
 import {Colorizer} from "../src/core/Colorizer";
+import {SocketDispatcher} from "../src/crawl/api/SocketDispatcher";
 
 const debug = debugMod("server");
 Colorizer.color();
@@ -11,7 +12,7 @@ Colorizer.color();
  * Get port from environment and store in Express.
  */
 
-const port: number = normalizePort(process.env.PORT || "3000");
+const port: number | string = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
 /**
@@ -19,13 +20,6 @@ app.set("port", port);
  */
 
 const server = http.createServer(app);
-const socketIo = io(server);
-socketIo.on("connection", (client) => {
-    client.on("event", (data) => {
-        console.log(data);
-    });
-});
-socketIo.listen(port + 1);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -34,6 +28,13 @@ socketIo.listen(port + 1);
 server.listen(port);
 server.on("error", onError);
 server.on("listening", onListening);
+
+/**
+ * Listen connection by socket.
+ */
+const socketServer = io(server);
+const socketDispatcher = new SocketDispatcher(socketServer);
+socketServer.listen(server);
 
 /**
  * Normalize a port into a number.
@@ -59,6 +60,7 @@ function onError(error: any) {
     switch (error.code) {
         case "EACCES":
             console.error(bind + " requires elevated privileges");
+            /** @var {NodeJS.Process} process */
             process.exit(1);
             break;
         case "EADDRINUSE":

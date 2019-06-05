@@ -5,7 +5,7 @@ import createError = require("http-errors");
 import logger = require("morgan");
 import path = require("path");
 import {router as indexRouter} from "./routes/index";
-import {router as socketRouter} from "./routes/socket";
+import {router as socketRouter} from "./routes/test/socket";
 
 const app: Express = express();
 
@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use("/public", express.static(path.join(__dirname, "dist")));
 
 app.use("/", indexRouter);
-app.use("/socket", socketRouter);
+app.use("/test/socket", socketRouter);
 
 // catch 404 and forward to error handler
 app.use((request, response, next) => {

@@ -2,5 +2,6 @@
 back/node_modules
 back/dist
 back/config/test.js
+back/tests/data/live/*.html
 front/node_modules
 front/dist

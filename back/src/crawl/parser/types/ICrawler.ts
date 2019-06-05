@@ -1,5 +1,22 @@
 import {Observable} from "rxjs";
+import {IRequest} from "./IRequest";
 
+/**
+ * Crawler.
+ */
 export interface ICrawler {
-    crawl(url: string): Observable<object>;
+    /** Identifier. */
+    id: string;
+
+    /** Set start request parameters. */
+    setRequest(request: IRequest): ICrawler;
+
+    /** Set parameters of request. */
+    setRequestParameters(parameters: {}): ICrawler;
+
+    /** Start crawling. */
+    crawl(): Observable<object>;
+
+    /** Stop crawling. */
+    stopCrawl(): ICrawler;
 }
