@@ -13,7 +13,7 @@ interface ISelector {
  */
 interface IModifier {
     name: string;
-    parameters: string[];
+    parameters: any[];
 }
 
 /**

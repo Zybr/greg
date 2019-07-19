@@ -92,6 +92,7 @@ export class SocketDispatcher {
                                     message: error.message,
                                     stack: error.stack,
                                 };
+                                console.error(error, error.stack);
                                 client.emit(
                                     `${en.crawler.subject}${en.splitters.action}${en.crawler.actions.error}`,
                                     errorData,

@@ -23,3 +23,6 @@
 ### Start
     npm start # Start server
     npm run build # Decode (TS, styles, etc.) and build dependences (live watch) 
+    
+## Commands
+    For additional commands read packcage.json, section "scritps".

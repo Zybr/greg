@@ -1,18 +1,18 @@
-// This config is not correct.
 module.exports = {
     request  : {
-        url: "https://www.google.com/search",
+        url       : "https://www.google.com/search",
+        method    : "GET",
+        parameters: {},
     },
     selectors: {
         items  : {
             properties: {
-                title  : "div > a > div | text",
-                url    : "div > a | attr:href",
-                snippet: "div > a > div | text",
+                title  : "//*/a/div/text() | shift",
+                url    : "//*/a/@href | shift | toString | match : /(http[^\"]+)/i | shift",
+                snippet: "//div/text() | slice : 2 : 3 | shift",
             },
-            query     : "body > div > div | []"
+            query     : "//*[@id='main']/div[@class]/div",
         },
-        // nextUrl: "footer a | []:1 | attr:href",
-        nextUrl: "footer div | []:1 | attr:href", // Invalid path.
+        nextUrl: "//footer//a[1]/@href | shift | toString | replace : /(^ href=\")|(\"$)/g : ''",
     }
 };

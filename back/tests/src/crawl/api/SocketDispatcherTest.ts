@@ -1,7 +1,6 @@
 import {should} from "chai";
 import chai = require("chai");
 import chaiSpies = require("chai-spies");
-import debugMod = require("debug");
 import {readdirSync, readFileSync} from "fs";
 import {Observable, Observer} from "rxjs";
 import io = require("socket.io");
@@ -11,10 +10,11 @@ import {ICrawlerIncData, ICrawlerOutData} from "../../../../src/crawl/api/socket
 import {SocketDispatcher} from "../../../../src/crawl/api/SocketDispatcher";
 import {CatalogCrawler} from "../../../../src/crawl/crawler/CatalogCrawler";
 import {CrawlerFactory} from "../../../../src/crawl/crawler/CrawlerFactory";
-import {Parser} from "../../../../src/crawl/parser/Parser";
-import {ServerMock} from "./mocks/ServerMock";
+import {Parser} from "../../../../src/crawl/parser/selector/Parser";
+import {ServerMock} from "../../../resource/mocks/api/ServerMock";
+import {getDebugger} from "../../../resource/src/debugger";
 
-const debug = debugMod("test:socket-dispatcher");
+const debug = getDebugger("test:socket-dispatcher");
 
 chai.use(chaiSpies);
 should();

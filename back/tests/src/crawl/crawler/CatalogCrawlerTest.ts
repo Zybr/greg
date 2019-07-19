@@ -1,34 +1,35 @@
 import {should} from "chai";
 import chai = require("chai");
 import chaiSpies = require("chai-spies");
-import debugMod = require("debug");
 import {readdirSync, readFileSync} from "fs";
 import client = require("superagent");
 import {Colorizer} from "../../../../src/core/Colorizer";
 import {CatalogCrawler} from "../../../../src/crawl/crawler/CatalogCrawler";
-import {Parser} from "../../../../src/crawl/parser/Parser";
 import {Request} from "../../../../src/crawl/parser/Request";
-import {ISelectorsMap} from "../../../../src/crawl/parser/types/html-selectors";
+import {Parser} from "../../../../src/crawl/parser/selector/Parser";
+import {SelectorDecoder} from "../../../../src/crawl/parser/SelectorDecoder";
+import {ISelectorsMap} from "../../../../src/crawl/parser/types/selectors";
+import {getDebugger} from "../../../resource/src/debugger";
 
-const debug = debugMod("test:catalog-crawler");
-const dataDirPath = __dirname + "/../../../data/catalog";
+const debug = getDebugger("test:catalog-crawler");
+const dataDirPath = __dirname + "/../../../resource/data/catalog";
 
 chai.use(chaiSpies);
 should();
 Colorizer.color();
 
-describe("CatalogCrawler [+ Parser, NodeModifier]", () => {
+describe("CatalogCrawler [+ Parser, SelectorDecoder]", () => {
     const selectors: ISelectorsMap = {
         items: {
             properties: {
                 snippet: "> div.snippet",
                 title: "> h3",
             },
-            query: ".content > div.item | []",
+            query: `.content > div.item | ${Parser.ARRAY_MOD}`,
         },
-        nextUrl: "ul.pagination a.next | attr:href",
+        nextUrl: "ul.pagination a.next | attr : href",
     };
-    const parser = new Parser(selectors);
+    const parser = new Parser(new SelectorDecoder(), selectors);
     const crawler = new CatalogCrawler(parser, client);
     let url: string;
 
