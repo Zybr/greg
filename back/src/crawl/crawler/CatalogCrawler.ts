@@ -4,7 +4,6 @@ import clientAgent = require("superagent");
 import {Parser} from "../parser/Parser";
 import {Request} from "../parser/Request";
 import {ICrawler} from "../parser/types/ICrawler";
-import {IParser} from "../parser/types/IParser";
 import {IRequest} from "../parser/types/IRequest";
 
 /**
@@ -18,7 +17,7 @@ export class CatalogCrawler implements ICrawler {
     private client: SuperAgentStatic;
 
     /** Page parser. */
-    private parser: IParser;
+    private parser: Parser;
 
     /** Start parameters of query. */
     private request: IRequest;
@@ -146,8 +145,17 @@ export class CatalogCrawler implements ICrawler {
      * Get parameters for next request.
      */
     private getNextRequest(): null | IRequest {
-        return (this.lastContent.nextUrl)
-            ? new Request(this.lastContent.nextUrl)
-            : null;
+        if (null === this.lastContent.nextUrl) {
+            return null;
+        }
+
+        let nextUrl = this.lastContent.nextUrl;
+
+        if (nextUrl.startsWith("/")) {
+            const root = this.request.url.match(/^((http[s]?|ftp):\/)?\/?([^:\/\s]+)/)[0];
+            nextUrl = root + nextUrl;
+        }
+
+        return new Request(nextUrl);
     }
 }

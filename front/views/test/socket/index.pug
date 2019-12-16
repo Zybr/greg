@@ -1,10 +1,12 @@
 extends ../../core/index
 block head
-  //link(rel='stylesheet', href='/stylesheets/style.css')
   script(src="/public/index.js")
 
 block body
   form(action=socket / data)
-    input(type=text name='action' value='start')
-    input(type=text name='search' value='search')
-    button(type=submit) submit
+    div
+        input(type=text name='action' value='start')
+    div
+        input(type=text name='search' value='search')
+    div
+        button(type=submit) submit

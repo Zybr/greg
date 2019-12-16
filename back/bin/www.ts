@@ -27,6 +27,7 @@ const server = http.createServer(app);
 
 server.listen(port);
 server.on("error", onError);
+process.on("uncaughtException", onError);
 server.on("listening", onListening);
 
 /**

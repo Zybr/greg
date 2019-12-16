@@ -5,7 +5,7 @@ import {CatalogCrawler} from "./CatalogCrawler";
  */
 export class GoogleCatalogCrawler extends CatalogCrawler {
     /**
-     * @inheritDoc
+     * Set parameters for request.
      */
     public setRequestParameters(parameters: { search?: string }): CatalogCrawler {
         return super.setRequestParameters({
