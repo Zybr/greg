@@ -12,9 +12,12 @@ export class Request implements IRequest {
 
     public url: string;
 
+    public delay: null | number;
+
     public constructor(url: string, method: TMethod = "GET", parameters: object = {}) {
         this.url = url;
         this.method = method;
         this.parameters = parameters;
+        this.delay = null;
     }
 }

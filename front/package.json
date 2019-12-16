@@ -9,7 +9,8 @@
     "code-style": "tslint '{bin,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json",
     "code-style-fix": "tslint '{bin,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json --fix",
     "test": "mocha -r ts-node/register tests/**/*.ts",
-    "test-debug": "DEBUG=test* mocha -r ts-node/register tests/**/*.ts"
+    "test-debug": "DEBUG=test* mocha -r ts-node/register tests/**/*.ts",
+    "routes": "ts-node-dev src/commands/routes.ts"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +19,7 @@
     "@types/socket.io-client": "^1.4.32",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
+    "express-list-endpoints": "^4.0.1",
     "http": "0.0.0",
     "morgan": "^1.9.1",
     "pug": "^2.0.3",

@@ -1,5 +1,4 @@
 import {should} from "chai";
-import {readdirSync, readFileSync} from "fs";
 import {Colorizer} from "../../../../src/core/Colorizer";
 import {CrawlerFactory} from "../../../../src/crawl/crawler/CrawlerFactory";
 import {GoogleCatalogCrawler} from "../../../../src/crawl/crawler/GoogleCatalogCrawler";

@@ -5,12 +5,14 @@
   "scripts": {
     "start": "PORT=3000 ts-node-dev ./bin/www",
     "stop": "pkill --signal SIGINT node",
-    "code-style": "tslint '{bin,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json",
-    "code-style-fix": "tslint '{bin,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json --fix",
-    "markup-download": "./bin/commands/download-markup.sh ./tests/resource/data/live",
-    "config-share": "./bin/commands/share-libs.sh ./../front/public/javascripts/configs/",
+    "start-mock": "PORT=3000 ts-node-dev ./mock-server/www",
+    "code-style": "tslint '{bin,mock-server,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json",
+    "code-style-fix": "tslint '{bin,mock-server,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json --fix",
     "test": "./bin/commands/test.sh",
-    "test-debug": "DEBUG=test* ./bin/commands/test.sh"
+    "test-debug": "DEBUG=test* ./bin/commands/test.sh",
+    "routes": "ts-node src/commands/routes.ts",
+    "markup-download": "./bin/commands/download-markup.sh ./tests/resource/data/live",
+    "config-share": "./bin/commands/share-libs.sh ./../front/public/javascripts/configs/"
   },
   "dependencies": {
     "@types/cheerio": "^0.22.10",
@@ -29,7 +31,6 @@
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "http-status-codes": "^1.3.0",
-    "mock-socket": "^8.0.5",
     "mongoose": "^5.4.14",
     "morgan": "~1.9.0",
     "needle": "^2.3.1",
@@ -55,6 +56,7 @@
     "chai-spies": "^1.0.0",
     "chai-string": "^1.5.0",
     "express-list-endpoints": "^4.0.0",
+    "faker": "^4.1.0",
     "mocha": "^6.0.1",
     "socket.io": "^2.2.0",
     "supertest": "^3.4.2",

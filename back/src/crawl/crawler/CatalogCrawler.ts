@@ -119,8 +119,10 @@ export class CatalogCrawler implements ICrawler {
 
                     return;
                 }
-
-                this.parseChainPages(nextRequest, observer);
+                setTimeout(
+                    () => this.parseChainPages(nextRequest, observer),
+                    this.request.delay ? this.request.delay : 0,
+                );
             })
             .catch((error) => {
                 this.crawlingState = null;

@@ -1,7 +1,6 @@
 import {should} from "chai";
 import chai = require("chai");
 import chaiSpies = require("chai-spies");
-import {readdirSync, readFileSync} from "fs";
 import {Observable, Observer} from "rxjs";
 import io = require("socket.io");
 import clientAgent = require("superagent");

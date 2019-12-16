@@ -15,7 +15,9 @@
 ### Start
     npm start # Start server
 ### Test
-    npm test
+    npm test # Run tests [fileName]
+    npm run test-debug [fileName] # Run test and show deatails
+    # fileName - Name of scpecific file without prefix "Test.ts"
 
 ## Front (folder "front")
 ### Install packages
@@ -25,4 +27,9 @@
     npm run build # Decode (TS, styles, etc.) and build dependences (live watch) 
     
 ## Commands
-    For additional commands read packcage.json, section "scritps".
+    /back/$ 
+        npm run -l # Show avaliable commands 
+    /front/$ 
+        npm run -l # Show avaliable commands 
+    /$ 
+        bash ./commands/start.sh # Start applicatin
