@@ -8,6 +8,7 @@ import crawlerConfig = require("../../../../src/crawl/configs/google.js");
 import {GoogleCatalogCrawler} from "../../../../src/crawl/crawler/GoogleCatalogCrawler";
 import {Request} from "../../../../src/crawl/parser/Request";
 import {SelectorDecoder} from "../../../../src/crawl/parser/SelectorDecoder";
+import {TMethod} from "../../../../src/crawl/parser/types/IRequest";
 import {DataModifier} from "../../../../src/crawl/parser/xpath/DataModifier";
 import {Parser as XpathParser} from "../../../../src/crawl/parser/xpath/Parser";
 import {XmlConverter} from "../../../../src/crawl/parser/xpath/XmlConverter";
@@ -44,7 +45,7 @@ describe("GoogleCatalogCrawler [+ Parser, SelectorDecoder]", () => {
         crawler = (new GoogleCatalogCrawler(parser, client))
             .setRequest(new Request(
                 crawlerConfig.request.url,
-                crawlerConfig.request.method || "GET",
+                crawlerConfig.request.method as TMethod || "GET",
                 crawlerConfig.request.parameters || {},
             ));
     });

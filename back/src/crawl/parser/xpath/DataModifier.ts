@@ -15,7 +15,7 @@ export class DataModifier implements IDataModifier {
      */
     public convert(data: null | any, modifiers: IModifier[]): any {
         for (const mod of modifiers) {
-            if (null === data) { // Skip empty.
+            if (null === data || undefined === data) { // Skip empty.
                 return null;
             }
 

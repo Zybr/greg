@@ -3,6 +3,7 @@ import googleConf = require("../configs/google.js");
 import {Request} from "../parser/Request";
 import {SelectorDecoder} from "../parser/SelectorDecoder";
 import {ICrawler} from "../parser/types/ICrawler";
+import {TMethod} from "../parser/types/IRequest";
 import {ISelectorsMap} from "../parser/types/selectors";
 import {DataModifier} from "../parser/xpath/DataModifier";
 import {Parser as XpathParser} from "../parser/xpath/Parser";
@@ -32,9 +33,10 @@ export class CrawlerFactory {
                 return (new GoogleCatalogCrawler(this.createXpathParser(googleConf.selectors), client))
                     .setRequest(new Request(
                         googleConf.request.url,
-                        googleConf.request.method || "GET",
+                        googleConf.request.method as TMethod || "GET",
                         googleConf.request.parameters || {},
-                    )).setRequest(googleConf.request);
+                    ))
+                    .setRequest(googleConf.request as Request);
             default:
                 throw Error("Type of crawler is invalid.");
         }

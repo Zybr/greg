@@ -94,19 +94,19 @@ describe("CatalogCrawler [+ Parser, SelectorDecoder]", () => {
                 .crawl()
                 .subscribe({
                     complete: () => {
-                        chai.assert.equal(curIteration, maxIteration);
+                        chai.assert.equal(curIteration, maxIteration + 1);
                         debug("Complete");
                     },
                     error: (error) => console.error(error),
                     next: () => {
                         curIteration++;
+                        // It should finish on next iteration.
                         if (maxIteration === curIteration) {
                             crawler.stopCrawl();
                         }
                     },
                 });
         });
-        crawler.stopCrawl().should.be.instanceof(CatalogCrawler);
     });
 
     describe(".setRequest()", () => {

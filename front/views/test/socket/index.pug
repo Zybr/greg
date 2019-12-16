@@ -5,8 +5,7 @@ block head
 block body
   form(action=socket / data)
     div
-        input(type=text name='action' value='start')
-    div
         input(type=text name='search' value='search')
     div
-        button(type=submit) submit
+        button(class='search') search
+        button(class='stop') stop

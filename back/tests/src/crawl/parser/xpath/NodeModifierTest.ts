@@ -1,7 +1,6 @@
 import * as chai from "chai";
 import {should} from "chai";
 import chaiString = require("chai-string");
-import {readFileSync} from "fs";
 import {Colorizer} from "../../../../../src/core/Colorizer";
 import {IModifier} from "../../../../../src/crawl/parser/types/selectors";
 import {NodeModifier} from "../../../../../src/crawl/parser/xpath/NodeModifier";
