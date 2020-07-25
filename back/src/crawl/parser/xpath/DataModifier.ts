@@ -1,5 +1,5 @@
-import {IDataModifier} from "../types/IDataModifier";
-import {IModifier} from "../types/selectors";
+import { IDataModifier } from "../types/IDataModifier";
+import { IModifier } from "../types/selectors";
 
 /**
  * Modifier for node/node-collection of document.

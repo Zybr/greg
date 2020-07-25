@@ -1,10 +1,11 @@
-import {Observable, Observer} from "rxjs";
-import {SuperAgentStatic} from "superagent";
+import { Observable, Observer } from "rxjs";
+import { SuperAgentStatic } from "superagent";
 import clientAgent = require("superagent");
-import {Parser} from "../parser/Parser";
-import {Request} from "../parser/Request";
-import {ICrawler} from "../parser/types/ICrawler";
-import {IRequest} from "../parser/types/IRequest";
+import ua = require("useragent-faker");
+import { Parser } from "../parser/Parser";
+import { Request } from "../parser/Request";
+import { ICrawler } from "../parser/types/ICrawler";
+import { IRequest } from "../parser/types/IRequest";
 
 /**
  * It provides data from consistently connected pages.
@@ -83,7 +84,7 @@ export class CatalogCrawler implements ICrawler {
     /**
      * Stop crawl.
      */
-    public stopCrawl(): CatalogCrawler {
+    public stop(): CatalogCrawler {
         this.crawlingState = (true === this.crawlingState) ? false : this.crawlingState;
 
         return this;
@@ -139,6 +140,7 @@ export class CatalogCrawler implements ICrawler {
         // TODO: handle case with invalid URL.
         return this.client
             .get(request.url)
+            .set("User-Agent", ua.random())
             .query(this.request.parameters)
             .then((value) => value.text);
     }

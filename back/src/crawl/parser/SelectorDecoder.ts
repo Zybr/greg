@@ -1,5 +1,9 @@
-import {IDaSelector, IModifier, ISelector} from "./types/selectors";
+import { IDaSelector, IModifier, ISelector } from "./types/selectors";
 
+/**
+ * Decoders of selector.
+ * @see ISelector
+ */
 export class SelectorDecoder {
     /** Delimiter for modifiers. */
     protected readonly MODIFIER_SPLITTER = " | ";

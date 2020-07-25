@@ -5,7 +5,13 @@
   ],
   "jsRules": {},
   "rules": {
-    "no-console": false
+    "no-console": false,
+    "whitespace": [
+      true,
+      "check-module"
+    ],
+    "align": true,
+    "jsdoc-format": true
   },
   "rulesDirectory": []
 }

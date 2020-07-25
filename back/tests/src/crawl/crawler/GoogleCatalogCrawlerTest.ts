@@ -1,18 +1,18 @@
-import {should} from "chai";
+import { should } from "chai";
 import chai = require("chai");
 import chaiSpies = require("chai-spies");
-import {readdirSync, readFileSync} from "fs";
+import { readdirSync, readFileSync } from "fs";
 import client = require("superagent");
-import {Colorizer} from "../../../../src/core/Colorizer";
+import { Colorizer } from "../../../../src/core/Colorizer";
 import crawlerConfig = require("../../../../src/crawl/configs/google.js");
-import {GoogleCatalogCrawler} from "../../../../src/crawl/crawler/GoogleCatalogCrawler";
-import {Request} from "../../../../src/crawl/parser/Request";
-import {SelectorDecoder} from "../../../../src/crawl/parser/SelectorDecoder";
-import {TMethod} from "../../../../src/crawl/parser/types/IRequest";
-import {DataModifier} from "../../../../src/crawl/parser/xpath/DataModifier";
-import {Parser as XpathParser} from "../../../../src/crawl/parser/xpath/Parser";
-import {XmlConverter} from "../../../../src/crawl/parser/xpath/XmlConverter";
-import {getDebugger} from "../../../resource/src/debugger";
+import { GoogleCatalogCrawler } from "../../../../src/crawl/crawler/GoogleCatalogCrawler";
+import { Request } from "../../../../src/crawl/parser/Request";
+import { SelectorDecoder } from "../../../../src/crawl/parser/SelectorDecoder";
+import { TMethod } from "../../../../src/crawl/parser/types/IRequest";
+import { DataModifier } from "../../../../src/crawl/parser/xpath/DataModifier";
+import { Parser as XpathParser } from "../../../../src/crawl/parser/xpath/Parser";
+import { XmlConverter } from "../../../../src/crawl/parser/xpath/XmlConverter";
+import { getDebugger } from "../../../resource/src/debugger";
 
 const debug = getDebugger("test:google-catalog-crawler");
 const markupFilePath = __dirname + "/../../../resource/data/live/google.html";
@@ -26,14 +26,14 @@ describe("GoogleCatalogCrawler [+ Parser, SelectorDecoder]", () => {
     let crawler: GoogleCatalogCrawler = null;
 
     before(() => {
-        // Spy "client.get()"
+        // Spy "client"
         const markup = readFileSync(markupFilePath).toString();
 
-        chai.spy.on(client, "get", () => {
-            return {
+        chai.spy.on(client, "get", () => ({
+            set: () => ({
                 query: () => Promise.resolve({text: markup}),
-            };
-        });
+            }),
+        }));
 
         // Create crawler.
         parser = new XpathParser(
@@ -62,7 +62,7 @@ describe("GoogleCatalogCrawler [+ Parser, SelectorDecoder]", () => {
                     complete: () => debug("Complete"),
                     error: (error) => console.error(error),
                     next: (pageContent: { items?: object[] }) => {
-                        crawler.stopCrawl();
+                        crawler.stop();
 
                         debug({pageContent});
 

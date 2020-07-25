@@ -1,9 +1,9 @@
 import debugMod = require("debug");
 import http = require("http");
 import io = require("socket.io");
-import {app} from "../app";
-import {Colorizer} from "../src/core/Colorizer";
-import {SocketDispatcher} from "../src/crawl/api/SocketDispatcher";
+import { app } from "../app";
+import { Colorizer } from "../src/core/Colorizer";
+import { SocketDispatcher } from "../src/crawl/api/SocketDispatcher";
 
 const debug = debugMod("server");
 Colorizer.color();

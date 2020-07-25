@@ -1,4 +1,4 @@
-import {blue, red, yellow} from "colors/safe";
+import { blue, red, yellow } from "colors/safe";
 
 /**
  * Change output color of console text.

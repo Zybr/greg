@@ -1,6 +1,6 @@
-import {parse} from "parse5";
-import {DOMParser} from "xmldom";
-import {serializeToString} from "xmlserializer";
+import { parse } from "parse5";
+import { DOMParser } from "xmldom";
+import { serializeToString } from "xmlserializer";
 
 /**
  * XML converter.

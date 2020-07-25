@@ -1,4 +1,4 @@
-import {IModifier} from "./selectors";
+import { IModifier } from "./selectors";
 
 /**
  * Modifier of selector.

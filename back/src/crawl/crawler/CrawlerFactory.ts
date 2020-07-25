@@ -1,14 +1,14 @@
 import client = require("superagent");
 import googleConf = require("../configs/google.js");
-import {Request} from "../parser/Request";
-import {SelectorDecoder} from "../parser/SelectorDecoder";
-import {ICrawler} from "../parser/types/ICrawler";
-import {TMethod} from "../parser/types/IRequest";
-import {ISelectorsMap} from "../parser/types/selectors";
-import {DataModifier} from "../parser/xpath/DataModifier";
-import {Parser as XpathParser} from "../parser/xpath/Parser";
-import {XmlConverter} from "../parser/xpath/XmlConverter";
-import {GoogleCatalogCrawler} from "./GoogleCatalogCrawler";
+import { Request } from "../parser/Request";
+import { SelectorDecoder } from "../parser/SelectorDecoder";
+import { ICrawler } from "../parser/types/ICrawler";
+import { TMethod } from "../parser/types/IRequest";
+import { ISelectorsMap } from "../parser/types/selectors";
+import { DataModifier } from "../parser/xpath/DataModifier";
+import { Parser as XpathParser } from "../parser/xpath/Parser";
+import { XmlConverter } from "../parser/xpath/XmlConverter";
+import { GoogleCatalogCrawler } from "./GoogleCatalogCrawler";
 
 /**
  * It is factory of crawlers.
@@ -42,6 +42,11 @@ export class CrawlerFactory {
         }
     }
 
+    /**
+     * Create Parser.
+     *
+     * @param selectorsMaps
+     */
     private static createXpathParser(selectorsMaps: ISelectorsMap): XpathParser {
         return new XpathParser(
             new XmlConverter(),

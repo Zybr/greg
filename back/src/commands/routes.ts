@@ -1,6 +1,6 @@
 import listEndpoints = require("express-list-endpoints");
-import {app} from "../../app";
-import {Colorizer} from "../core/Colorizer";
+import { app } from "../../app";
+import { Colorizer } from "../core/Colorizer";
 
 Colorizer.color();
 

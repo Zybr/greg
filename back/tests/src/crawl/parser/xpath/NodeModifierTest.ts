@@ -1,10 +1,10 @@
 import * as chai from "chai";
-import {should} from "chai";
+import { should } from "chai";
 import chaiString = require("chai-string");
-import {Colorizer} from "../../../../../src/core/Colorizer";
-import {IModifier} from "../../../../../src/crawl/parser/types/selectors";
-import {NodeModifier} from "../../../../../src/crawl/parser/xpath/NodeModifier";
-import {getDebugger} from "../../../../resource/src/debugger";
+import { Colorizer } from "../../../../../src/core/Colorizer";
+import { IModifier } from "../../../../../src/crawl/parser/types/selectors";
+import { NodeModifier } from "../../../../../src/crawl/parser/xpath/NodeModifier";
+import { getDebugger } from "../../../../resource/src/debugger";
 
 const debug = getDebugger("test:xpath:node-modifier");
 

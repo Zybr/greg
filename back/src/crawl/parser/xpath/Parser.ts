@@ -1,9 +1,9 @@
 import xpath = require("xpath");
-import {Parser as ParserBase} from "../Parser";
-import {SelectorDecoder} from "../SelectorDecoder";
-import {IDaSelector, ISelectorsMap} from "../types/selectors";
-import {DataModifier} from "./DataModifier";
-import {XmlConverter} from "./XmlConverter";
+import { Parser as ParserBase } from "../Parser";
+import { SelectorDecoder } from "../SelectorDecoder";
+import { IDaSelector, ISelectorsMap } from "../types/selectors";
+import { DataModifier } from "./DataModifier";
+import { XmlConverter } from "./XmlConverter";
 
 /**
  * HTML parser.

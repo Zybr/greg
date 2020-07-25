@@ -1,6 +1,8 @@
-const path     = require('path');
+const path       = require('path');
+const srcJsPath  = './src/init/';
+const distJsPath = path.resolve(__dirname, 'dist/javascript');
+
 module.exports = {
-    entry  : './public/javascripts/index.ts',
     module : {
         rules: [
             {
@@ -12,10 +14,14 @@ module.exports = {
     resolve: {
         extensions: ['.tsx', '.ts', '.js', '.css']
     },
+    entry  : {
+        search: srcJsPath + 'search.tsx',
+    },
     output : {
-        filename: 'index.js',
-        path    : path.resolve(__dirname, 'dist')
+        path             : distJsPath,
+        filename         : '[name].js',
+        sourceMapFilename: '[name].js.map'
     },
     mode   : 'development',
-    devtool: "source-map"
+    devtool: "source-map",
 };

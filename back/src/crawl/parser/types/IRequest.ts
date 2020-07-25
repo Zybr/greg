@@ -1,7 +1,7 @@
 export type TMethod = "GET" | "POST" | "PUT" | "DELETE";
 
 /**
- * Request.
+ * Request parameters.
  */
 export interface IRequest {
     /** Target URL. */
