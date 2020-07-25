@@ -1,4 +1,4 @@
-import {CatalogCrawler} from "./CatalogCrawler";
+import { CatalogCrawler } from "./CatalogCrawler";
 
 /**
  * Crawler which collect data form result of google search.

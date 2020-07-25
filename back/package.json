@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "PORT=3000 ts-node-dev ./bin/www",
+    "start": "MOCK=MOCK  PORT=3000 ts-node-dev ./bin/www",
     "stop": "pkill --signal SIGINT node",
     "start-mock": "PORT=3000 ts-node-dev ./mock-server/www",
     "code-style": "tslint '{bin,mock-server,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json",
@@ -39,6 +39,7 @@
     "ts-xpath": "^0.3.1",
     "tspath": "^1.3.7",
     "typescript": "^3.3.3333",
+    "useragent-faker": "^0.2.5",
     "uuid": "^3.3.2",
     "xmldom": "^0.1.27",
     "xmlserializer": "^0.6.1",
@@ -60,6 +61,7 @@
     "mocha": "^6.0.1",
     "socket.io": "^2.2.0",
     "supertest": "^3.4.2",
+    "ts-node-dev": "^1.0.0-pre.52",
     "tslint": "^5.13.0"
   },
   "repository": {

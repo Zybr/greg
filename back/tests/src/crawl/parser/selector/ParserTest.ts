@@ -1,13 +1,13 @@
 import * as chai from "chai";
-import {should} from "chai";
+import { should } from "chai";
 import chaiInterface = require("chai-interface");
 import chaiString = require("chai-string");
-import {readFileSync} from "fs";
-import {Colorizer} from "../../../../../src/core/Colorizer";
-import {Parser} from "../../../../../src/crawl/parser/selector/Parser";
-import {SelectorDecoder} from "../../../../../src/crawl/parser/SelectorDecoder";
-import {ISelectorsMap} from "../../../../../src/crawl/parser/types/selectors";
-import {getDebugger} from "../../../../resource/src/debugger";
+import { readFileSync } from "fs";
+import { Colorizer } from "../../../../../src/core/Colorizer";
+import { Parser } from "../../../../../src/crawl/parser/selector/Parser";
+import { SelectorDecoder } from "../../../../../src/crawl/parser/SelectorDecoder";
+import { ISelectorsMap } from "../../../../../src/crawl/parser/types/selectors";
+import { getDebugger } from "../../../../resource/src/debugger";
 
 const debug = getDebugger("test:html:parser");
 const pathTestData = __dirname + "/../../../../resource/data/";

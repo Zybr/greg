@@ -1,8 +1,8 @@
-import {should} from "chai";
-import {Colorizer} from "../../../../src/core/Colorizer";
-import {SelectorDecoder} from "../../../../src/crawl/parser/SelectorDecoder";
-import {IDaSelector, ISelector} from "../../../../src/crawl/parser/types/selectors";
-import {getDebugger} from "../../../resource/src/debugger";
+import { should } from "chai";
+import { Colorizer } from "../../../../src/core/Colorizer";
+import { SelectorDecoder } from "../../../../src/crawl/parser/SelectorDecoder";
+import { IDaSelector, ISelector } from "../../../../src/crawl/parser/types/selectors";
+import { getDebugger } from "../../../resource/src/debugger";
 
 const debug = getDebugger("test:types:parser");
 

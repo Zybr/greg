@@ -1,5 +1,5 @@
 /** Data-objects for events. */
-import {eventNames} from "./event-names";
+import { eventNames } from "./event-names";
 
 /** Incoming events. */
 

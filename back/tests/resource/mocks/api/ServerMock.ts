@@ -1,5 +1,5 @@
-import {ClientMock} from "./ClientMock";
-import {EventEmitterMock} from "./EventEmitterMock";
+import { ClientMock } from "./ClientMock";
+import { EventEmitterMock } from "./EventEmitterMock";
 
 export class ServerMock extends EventEmitterMock {
     private client: ClientMock = new ClientMock();

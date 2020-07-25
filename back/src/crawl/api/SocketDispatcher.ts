@@ -1,7 +1,7 @@
 import io = require("socket.io");
 import generateID = require("uuid");
-import {CrawlerFactory} from "../crawler/CrawlerFactory";
-import {ICrawler} from "../parser/types/ICrawler";
+import { CrawlerFactory } from "../crawler/CrawlerFactory";
+import { ICrawler } from "../parser/types/ICrawler";
 import {
     eventNames as en,
     ICrawlerErrorOutData, ICrawlerIncData,
@@ -90,7 +90,7 @@ export class SocketDispatcher {
                                 const errorData: ICrawlerErrorOutData = {
                                     id: crawler.id,
                                     message: error.message,
-                                    stack: error.stack,
+                                    stack: error.stack.split("\n"),
                                 };
                                 console.error(error, error.stack);
                                 client.emit(
@@ -122,7 +122,7 @@ export class SocketDispatcher {
                     const errorData: ICrawlerErrorOutData = {
                         id: crawler.id,
                         message: error.message,
-                        stack: error.stack,
+                        stack: error.stack.split("\n"),
                     };
                     client.emit( // Notify "error"
                         `${en.crawler.subject}${en.splitters.action}${en.crawler.actions.error}`,
@@ -135,11 +135,14 @@ export class SocketDispatcher {
             `${en.crawler.subject}${en.splitters.action}${en.crawler.actions.stop}`,
             (event: ICrawlerSearchIncData) => {
                 try {
-                    const crawler = this.defineCrawler(client, event);
-                    crawler.stopCrawl(); // Stop crawling.
+                    const crawler = this.getCrawler(client, event);
+                    crawler.stop(); // Stop crawling.
 
                     client.emit(
                         `${en.crawler.subject}${en.splitters.action}${en.crawler.actions.stopped}`,
+                        {
+                            id: crawler.id,
+                        },
                     ); // Notify "stopped"
                 } catch (error) {
                     client.emit( // Notify caught error.
@@ -158,11 +161,11 @@ export class SocketDispatcher {
      */
     private disconnectClient(client: io.Socket) {
         for (const crawlerId in this.crawlers[client.id]) { // Remove crawlers.
-            if (!this.crawlers.hasOwnProperty(crawlerId)) {
+            if (!this.crawlers[client.id].hasOwnProperty(crawlerId)) {
                 continue;
             }
 
-            this.crawlers[client.id][crawlerId].stopCrawl(); // Stop crawling.
+            this.crawlers[client.id][crawlerId].stop(); // Stop crawling.
             delete this.crawlers[client.id]; // Remove crawler.
         }
 

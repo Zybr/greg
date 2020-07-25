@@ -1,11 +1,11 @@
 import cheerio = require("cheerio");
-import {Parser as ParserBase} from "../Parser";
-import {SelectorDecoder} from "../SelectorDecoder";
+import { Parser as ParserBase } from "../Parser";
+import { SelectorDecoder } from "../SelectorDecoder";
 import {
     IDaSelector,
     ISelectorsMap,
 } from "../types/selectors";
-import {NodeModifier} from "./NodeModifier";
+import { NodeModifier } from "./NodeModifier";
 
 /**
  * HTML parser.

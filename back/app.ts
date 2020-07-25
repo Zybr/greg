@@ -1,10 +1,10 @@
 import cookieParser = require("cookie-parser");
-import {Express} from "express";
+import { Express } from "express";
 import express = require("express");
 import createError = require("http-errors");
 import logger = require("morgan");
-import {router as rootRouter} from "./routes/index";
-import {router as testRouter} from "./routes/test";
+import { router as rootRouter } from "./routes/index";
+import { router as testRouter } from "./routes/test";
 
 const app: Express = express();
 
@@ -36,4 +36,4 @@ app.use((err, req, res, next) => {
     });
 });
 
-export {app};
+export { app };

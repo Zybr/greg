@@ -1,5 +1,5 @@
-import {Observable} from "rxjs";
-import {IRequest} from "./IRequest";
+import { Observable } from "rxjs";
+import { IRequest } from "./IRequest";
 
 /**
  * Crawler.
@@ -18,5 +18,5 @@ export interface ICrawler {
     crawl(): Observable<object>;
 
     /** Stop crawling. */
-    stopCrawl(): ICrawler;
+    stop(): ICrawler;
 }

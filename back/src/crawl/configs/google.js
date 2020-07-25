@@ -3,7 +3,7 @@ module.exports = {
         url       : "https://www.google.com/search",
         method    : "GET",
         parameters: {},
-        delay     : 5000,
+        delay     : 15 * 1000,
     },
     selectors: {
         items  : {

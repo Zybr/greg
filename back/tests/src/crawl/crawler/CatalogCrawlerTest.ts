@@ -1,15 +1,15 @@
-import {should} from "chai";
+import { should } from "chai";
 import chai = require("chai");
 import chaiSpies = require("chai-spies");
-import {readdirSync, readFileSync} from "fs";
+import { readdirSync, readFileSync } from "fs";
 import client = require("superagent");
-import {Colorizer} from "../../../../src/core/Colorizer";
-import {CatalogCrawler} from "../../../../src/crawl/crawler/CatalogCrawler";
-import {Request} from "../../../../src/crawl/parser/Request";
-import {Parser} from "../../../../src/crawl/parser/selector/Parser";
-import {SelectorDecoder} from "../../../../src/crawl/parser/SelectorDecoder";
-import {ISelectorsMap} from "../../../../src/crawl/parser/types/selectors";
-import {getDebugger} from "../../../resource/src/debugger";
+import { Colorizer } from "../../../../src/core/Colorizer";
+import { CatalogCrawler } from "../../../../src/crawl/crawler/CatalogCrawler";
+import { Request } from "../../../../src/crawl/parser/Request";
+import { Parser } from "../../../../src/crawl/parser/selector/Parser";
+import { SelectorDecoder } from "../../../../src/crawl/parser/SelectorDecoder";
+import { ISelectorsMap } from "../../../../src/crawl/parser/types/selectors";
+import { getDebugger } from "../../../resource/src/debugger";
 
 const debug = getDebugger("test:catalog-crawler");
 const dataDirPath = __dirname + "/../../../resource/data/catalog";
@@ -34,16 +34,16 @@ describe("CatalogCrawler [+ Parser, SelectorDecoder]", () => {
     let url: string;
 
     before(() => {
-        // Spy "client.get()"
+        // Spy "client"
         const markups = {};
         readdirSync(dataDirPath)
             .forEach((fileName: string) => markups[fileName] = readFileSync(`${dataDirPath}/${fileName}`).toString());
         url = Object.keys(markups)[0];
-        chai.spy.on(client, "get", (nextUrl: string) => {
-            return {
+        chai.spy.on(client, "get", (nextUrl: string) => ({
+            set: () => ({
                 query: () => Promise.resolve({text: markups[nextUrl]}),
-            };
-        });
+            }),
+        }));
     });
 
     after(() => {
@@ -84,7 +84,7 @@ describe("CatalogCrawler [+ Parser, SelectorDecoder]", () => {
         });
     });
 
-    describe(".stopCrawl()", () => {
+    describe(".stop()", () => {
         it("Should stop crawling.", () => {
             const maxIteration = 2;
             let curIteration = 0;
@@ -102,7 +102,7 @@ describe("CatalogCrawler [+ Parser, SelectorDecoder]", () => {
                         curIteration++;
                         // It should finish on next iteration.
                         if (maxIteration === curIteration) {
-                            crawler.stopCrawl();
+                            crawler.stop();
                         }
                     },
                 });

@@ -1,17 +1,17 @@
-import {should} from "chai";
+import { should } from "chai";
 import chai = require("chai");
 import chaiSpies = require("chai-spies");
-import {Observable, Observer} from "rxjs";
+import { Observable, Observer } from "rxjs";
 import io = require("socket.io");
 import clientAgent = require("superagent");
-import {Colorizer} from "../../../../src/core/Colorizer";
-import {ICrawlerIncData, ICrawlerOutData} from "../../../../src/crawl/api/socket-events";
-import {SocketDispatcher} from "../../../../src/crawl/api/SocketDispatcher";
-import {CatalogCrawler} from "../../../../src/crawl/crawler/CatalogCrawler";
-import {CrawlerFactory} from "../../../../src/crawl/crawler/CrawlerFactory";
-import {Parser} from "../../../../src/crawl/parser/selector/Parser";
-import {ServerMock} from "../../../resource/mocks/api/ServerMock";
-import {getDebugger} from "../../../resource/src/debugger";
+import { Colorizer } from "../../../../src/core/Colorizer";
+import { ICrawlerIncData, ICrawlerOutData } from "../../../../src/crawl/api/socket-events";
+import { SocketDispatcher } from "../../../../src/crawl/api/SocketDispatcher";
+import { CatalogCrawler } from "../../../../src/crawl/crawler/CatalogCrawler";
+import { CrawlerFactory } from "../../../../src/crawl/crawler/CrawlerFactory";
+import { Parser } from "../../../../src/crawl/parser/selector/Parser";
+import { ServerMock } from "../../../resource/mocks/api/ServerMock";
+import { getDebugger } from "../../../resource/src/debugger";
 
 const debug = getDebugger("test:socket-dispatcher");
 
@@ -19,7 +19,7 @@ chai.use(chaiSpies);
 should();
 Colorizer.color();
 
-describe("SocketDispatcher.", () => {
+describe("SocketDispatcherMock.", () => {
     const events = {
         complete: "crawler:complete",
         connect: "connection",
@@ -61,7 +61,7 @@ describe("SocketDispatcher.", () => {
         // Crawler.
         chai.spy.on(CatalogCrawler, "setRequest", () => catalogCrawler);
         chai.spy.on(catalogCrawler, "setRequestParameters", () => catalogCrawler);
-        chai.spy.on(catalogCrawler, "stopCrawl", () => catalogCrawler);
+        chai.spy.on(catalogCrawler, "stop", () => catalogCrawler);
         // Factory.
         chai.spy.on(CrawlerFactory, "getCrawler", () => catalogCrawler);
 

@@ -1,6 +1,6 @@
-import {Request, Response} from "express";
+import { Request, Response } from "express";
 
-import {INTERNAL_SERVER_ERROR} from "http-status-codes";
+import { INTERNAL_SERVER_ERROR } from "http-status-codes";
 
 /**
  * Error handler.

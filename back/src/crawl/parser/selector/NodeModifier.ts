@@ -1,7 +1,7 @@
 import * as Cheerio from "cheerio";
-import {isCheerio} from "../types/CheerioDetector";
-import {IDataModifier} from "../types/IDataModifier";
-import {IModifier} from "../types/selectors";
+import { isCheerio } from "../types/CheerioDetector";
+import { IDataModifier } from "../types/IDataModifier";
+import { IModifier } from "../types/selectors";
 
 /**
  * Modifier for node of document.
