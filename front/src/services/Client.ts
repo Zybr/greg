@@ -1,5 +1,5 @@
 import * as io from "socket.io-client";
-import {backUrl} from "../../configs/config";
+import {backUrl} from "../configs/config";
 
 /**
  * Client for conversation wit server by socket connection.
