@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "MOCK=MOCK  PORT=3000 ts-node-dev ./bin/www",
+    "start": "PORT=3000 ts-node-dev ./bin/www",
     "stop": "pkill --signal SIGINT node",
     "start-mock": "PORT=3000 ts-node-dev ./mock-server/www",
     "code-style": "tslint '{bin,mock-server,routes,src,tests}/**/*.{ts,tsx}' -c tslint.json",

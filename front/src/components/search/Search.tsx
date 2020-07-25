@@ -33,7 +33,7 @@ class Search extends React.Component {
                                 name="search"
                                 label="Search"
                                 onChange={this.handleValueChange}
-                                value={this.value}
+                                defaultValue={this.value}
                             />
                         </Grid>
                         <Grid container item xs={12}>
