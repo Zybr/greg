@@ -19,7 +19,7 @@
     "@material-ui/icons": "^4.5.1",
     "@types/node": "^11.11.6",
     "@types/socket.io-client": "^1.4.32",
-    "acorn": "^7.1.0",
+    "acorn": "^7.1.1",
     "acorn-dynamic-import": "^4.0.0",
     "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
