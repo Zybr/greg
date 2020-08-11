@@ -7,9 +7,9 @@ import { Colorizer } from "../../../../../src/core/Colorizer";
 import { Parser } from "../../../../../src/crawl/parser/selector/Parser";
 import { SelectorDecoder } from "../../../../../src/crawl/parser/SelectorDecoder";
 import { ISelectorsMap } from "../../../../../src/crawl/parser/types/selectors";
-import { getDebugger } from "../../../../resource/src/debugger";
+import { createDebugger } from "../../../../resource/src/debugger";
 
-const debug = getDebugger("test:html:parser");
+const debug = createDebugger("test:html:parser");
 const pathTestData = __dirname + "/../../../../resource/data/";
 
 chai.use(chaiString);

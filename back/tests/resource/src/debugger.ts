@@ -2,12 +2,12 @@ import debug = require("debug");
 import util = require("util");
 
 /**
- * Get debug function.
+ * Create debugger.
  *
- * @param name
+ * @param namespace
  */
-export function getDebugger(name: string) {
-    const debugFunc = debug(name);
+export function createDebugger(namespace: string) {
+    const debugFunc = debug(namespace);
 
     return (...args) => {
         debugFunc.apply(debugFunc, args

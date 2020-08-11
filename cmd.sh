@@ -22,7 +22,7 @@ case "$1" in
 
       if [[ "$mock" == 1 ]]; then
         echo -e "\n\e[32mRun mock server\e[0m"
-        cmdStartBack="npm run start-mock --prefix $DIR/back/"
+        cmdStartBack="npm run start:mock --prefix $DIR/back/"
       else
         cmdStartBack="npm start --prefix $DIR/back/"
         echo -e "\n\e[32mRun server\e[0m"
@@ -38,6 +38,7 @@ case "$1" in
         )
       )
       ;;
+
     routes )
       echo -e "\n\e[32mRoutes\e[0m"
       echo -e "\n\e[32mBack\e[0m"
@@ -45,20 +46,27 @@ case "$1" in
       echo -e "\n\e[32mFront\e[0m"
       npm run routes --prefix "$DIR"/front
       ;;
-    test )
+
+    tests )
       echo -e "\n\e[32mTests Back\e[0m"
-      npm run test --prefix "$DIR"/back
+      npm run tests --prefix "$DIR"/back
       ;;
-    codestyle )
+
+    codestyles )
       echo -e "\n\e[32mBack\e[0m"
-      npm run code-style-fix --prefix "$DIR"/back
+      npm run code-styles:fix --prefix "$DIR"/back
       echo -e "\n\e[32mFront\e[0m"
-      npm run code-style-fix --prefix "$DIR"/front
+      npm run code-styles:fix --prefix "$DIR"/front
+      ;;
+
+    fixtures )
+      npm run fixtures:load:renew --prefix "$DIR"/back
       ;;
 
     * )
       echo -e "\e[32mstart\e[0m - Start application"
       echo -e "\e[32mstart -m\e[0m - Start application with mocked back"
-      echo -e "\e[32mtest\e[0m - Run tests"
+      echo -e "\e[32mtests\e[0m - Run tests"
       echo -e "\e[32mroutes\e[0m - Show available routes"
+      echo -e "\e[32mfixtures\e[0m - Fill DB"
 esac

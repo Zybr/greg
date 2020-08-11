@@ -1,11 +1,11 @@
-import { IDataModifier } from "../types/IDataModifier";
+import { ADataModifier } from "../types/ADataModifier";
 import { IModifier } from "../types/selectors";
 
 /**
  * Modifier for node of document.
  * @deprecated Use DataModifier
  */
-export class NodeModifier implements IDataModifier {
+export class NodeModifier implements ADataModifier {
     /**
      * Convert.
      */

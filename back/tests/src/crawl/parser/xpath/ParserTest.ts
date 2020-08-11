@@ -8,9 +8,9 @@ import { ISelectorsMap } from "../../../../../src/crawl/parser/types/selectors";
 import { DataModifier } from "../../../../../src/crawl/parser/xpath/DataModifier";
 import { Parser } from "../../../../../src/crawl/parser/xpath/Parser";
 import { XmlConverter } from "../../../../../src/crawl/parser/xpath/XmlConverter";
-import { getDebugger } from "../../../../resource/src/debugger";
+import { createDebugger } from "../../../../resource/src/debugger";
 
-const debug = getDebugger("test:xpath:parser");
+const debug = createDebugger("test:xpath:parser");
 const pathTestData = __dirname + "/../../../../resource/data/";
 chai.use(chaiString);
 should();

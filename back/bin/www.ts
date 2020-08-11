@@ -1,86 +1,19 @@
-import debugMod = require("debug");
 import http = require("http");
 import io = require("socket.io");
 import { app } from "../app";
-import { Colorizer } from "../src/core/Colorizer";
+import { ErrorProcessor } from "../src/core/ErrorProcessor";
 import { SocketDispatcher } from "../src/crawl/api/SocketDispatcher";
 
-const debug = debugMod("server");
-Colorizer.color();
+/** Create serve */
+app.set("port", parseInt(process.env.PORT || "3000", 10)); // Define port
+const server = http.createServer(app); // Create server
+server.listen(app.get("port"));
 
-/**
- * Get port from environment and store in Express.
- */
+/** Handle errors */
+server.on("error", ErrorProcessor.handleServerError);
+process.on("uncaughtException", ErrorProcessor.handleServerError);
 
-const port: number | string = normalizePort(process.env.PORT || "3000");
-app.set("port", port);
-
-/**
- * Create HTTP server.
- */
-
-const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port);
-server.on("error", onError);
-process.on("uncaughtException", onError);
-server.on("listening", onListening);
-
-/**
- * Listen connection by socket.
- */
+/** Create socket server */
 const socketServer = io(server);
 const socketDispatcher = new SocketDispatcher(socketServer);
 socketServer.listen(server);
-
-/**
- * Normalize a port into a number.
- */
-function normalizePort(val: string): number {
-    return parseInt(val, 10);
-}
-
-/**
- * Event listener for HTTP server "error" event.
- */
-
-function onError(error: any) {
-    if (error.syscall !== "listen") {
-        throw error;
-    }
-
-    const bind = typeof port === "string"
-        ? "Pipe " + port
-        : "Port " + port;
-
-    // handle specific listen errors with friendly messages
-    switch (error.code) {
-        case "EACCES":
-            console.error(bind + " requires elevated privileges");
-            /** @var {NodeJS.Process} process */
-            process.exit(1);
-            break;
-        case "EADDRINUSE":
-            console.error(bind + " is already in use");
-            process.exit(1);
-            break;
-        default:
-            throw error;
-    }
-}
-
-/**
- * Event listener for HTTP server "listening" event.
- */
-
-function onListening() {
-    const addr = server.address();
-    const bind = typeof addr === "string"
-        ? "pipe " + addr
-        : "port " + addr.port;
-    debug("Listening on " + bind);
-}

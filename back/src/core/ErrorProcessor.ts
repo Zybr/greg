@@ -1,53 +1,38 @@
-import { Request, Response } from "express";
+import { app } from "../../app";
+import { Colorizer } from "./Colorizer";
+import { IError } from "./types/IError";
 
-import { INTERNAL_SERVER_ERROR } from "http-status-codes";
+Colorizer.color();
 
-/**
- * Error handler.
- */
+/** Error handler. */
 export class ErrorProcessor {
     /**
-     * Handle CLI error.
-     *
-     * @param err
-     * @param addMessage
+     * Handle server socket errors.
+     * @param error
      */
-    public static handleCliError(err: Error, addMessage: string = null) {
-        console.error(addMessage, err.stack);
-    }
+    public static handleServerError(error: IError) {
+        if (error.syscall !== "listen") {
+            throw error;
+        }
+        const port = app.get("port");
 
-    /**
-     * Handle error on API operation.
-     *
-     * @param err
-     * @param res
-     */
-    public static handleApiError(err: Error, res: Response) {
-        res
-            .status(INTERNAL_SERVER_ERROR)
-            .json({
-                messages: {
-                    error: err.message,
-                },
-            });
+        const bind = typeof port === "string"
+            ? "Pipe " + port
+            : "Port " + port;
 
-        ErrorProcessor.handleCliError(err);
-    }
-
-    /**
-     * Handle application error.
-     *
-     * @param err
-     * @param req
-     * @param res
-     * @param next
-     */
-    public static handleAppError(err: Error, req: Request, res: Response, next: CallableFunction) {
-        console.error("Application error. " + err.stack);
-        res.status(500)
-            .json({
-                message: err.message,
-            });
-        next(err);
+        // handle specific listen errors with friendly messages
+        switch (error.code) {
+            case "EACCES":
+                console.error(bind + " requires elevated privileges");
+                /** @var {NodeJS.Process} process */
+                process.exit(1);
+                break;
+            case "EADDRINUSE":
+                console.error(bind + " is already in use");
+                process.exit(1);
+                break;
+            default:
+                throw error;
+        }
     }
 }

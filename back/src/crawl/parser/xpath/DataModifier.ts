@@ -1,10 +1,10 @@
-import { IDataModifier } from "../types/IDataModifier";
+import { ADataModifier } from "../types/ADataModifier";
 import { IModifier } from "../types/selectors";
 
 /**
  * Modifier for node/node-collection of document.
  */
-export class DataModifier implements IDataModifier {
+export class DataModifier implements ADataModifier {
     /**
      * Prefix for modifiers of each item of collection.
      */

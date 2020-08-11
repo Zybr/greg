@@ -6,10 +6,10 @@
   "scripts": {
     "start": "PORT=3010 ts-node-dev ./bin/www",
     "build": "webpack --watch --display-error-details",
-    "code-style": "tslint '{bin,routes,src,public,tests}/**/*.{ts,tsx}' -c tslint.json",
-    "code-style-fix": "tslint '{bin,routes,src,public,tests}/**/*.{ts,tsx}' -c tslint.json --fix",
+    "code-styles": "tslint '{bin,routes,src,public,tests}/**/*.{ts,tsx}' -c tslint.json",
+    "code-styles:fix": "tslint '{bin,routes,src,public,tests}/**/*.{ts,tsx}' -c tslint.json --fix",
     "test": "mocha -r ts-node/register tests/**/*.ts",
-    "test-debug": "DEBUG=test* mocha -r ts-node/register tests/**/*.ts",
+    "tests:debug": "DEBUG=test* mocha -r ts-node/register tests/**/*.ts",
     "routes": "ts-node-dev src/back/commands/routes.ts"
   },
   "author": "",

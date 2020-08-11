@@ -1,12 +1,12 @@
 import * as Cheerio from "cheerio";
+import { ADataModifier } from "../types/ADataModifier";
 import { isCheerio } from "../types/CheerioDetector";
-import { IDataModifier } from "../types/IDataModifier";
 import { IModifier } from "../types/selectors";
 
 /**
  * Modifier for node of document.
  */
-export class NodeModifier implements IDataModifier {
+export class NodeModifier implements ADataModifier {
     /**
      * Query language.
      * Allow use query(jQuery) language for process document.
