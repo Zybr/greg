@@ -9,9 +9,9 @@ import { Request } from "../../../../src/crawl/parser/Request";
 import { Parser } from "../../../../src/crawl/parser/selector/Parser";
 import { SelectorDecoder } from "../../../../src/crawl/parser/SelectorDecoder";
 import { ISelectorsMap } from "../../../../src/crawl/parser/types/selectors";
-import { getDebugger } from "../../../resource/src/debugger";
+import { createDebugger } from "../../../resource/src/debugger";
 
-const debug = getDebugger("test:catalog-crawler");
+const debug = createDebugger("test:catalog-crawler");
 const dataDirPath = __dirname + "/../../../resource/data/catalog";
 
 chai.use(chaiSpies);

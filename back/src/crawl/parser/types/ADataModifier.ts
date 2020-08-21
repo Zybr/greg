@@ -4,7 +4,7 @@ import { IModifier } from "./selectors";
  * Modifier of selector.
  * It converts, fetches and transforms data from nodes.
  */
-export abstract class IDataModifier {
+export abstract class ADataModifier {
     /**
      * Apply modifiers for fetched node.
      *

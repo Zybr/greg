@@ -4,9 +4,9 @@ import chaiString = require("chai-string");
 import { Colorizer } from "../../../../../src/core/Colorizer";
 import { IModifier } from "../../../../../src/crawl/parser/types/selectors";
 import { DataModifier } from "../../../../../src/crawl/parser/xpath/DataModifier";
-import { getDebugger } from "../../../../resource/src/debugger";
+import { createDebugger } from "../../../../resource/src/debugger";
 
-const debug = getDebugger("test:xpath:node-modifier");
+const debug = createDebugger("test:xpath:node-modifier");
 
 chai.use(chaiString);
 should();

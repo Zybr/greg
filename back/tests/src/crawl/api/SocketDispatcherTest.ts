@@ -11,9 +11,9 @@ import { CatalogCrawler } from "../../../../src/crawl/crawler/CatalogCrawler";
 import { CrawlerFactory } from "../../../../src/crawl/crawler/CrawlerFactory";
 import { Parser } from "../../../../src/crawl/parser/selector/Parser";
 import { ServerMock } from "../../../resource/mocks/api/ServerMock";
-import { getDebugger } from "../../../resource/src/debugger";
+import { createDebugger } from "../../../resource/src/debugger";
 
-const debug = getDebugger("test:socket-dispatcher");
+const debug = createDebugger("test:socket-dispatcher");
 
 chai.use(chaiSpies);
 should();

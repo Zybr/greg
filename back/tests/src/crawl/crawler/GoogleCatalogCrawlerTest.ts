@@ -12,9 +12,9 @@ import { TMethod } from "../../../../src/crawl/parser/types/IRequest";
 import { DataModifier } from "../../../../src/crawl/parser/xpath/DataModifier";
 import { Parser as XpathParser } from "../../../../src/crawl/parser/xpath/Parser";
 import { XmlConverter } from "../../../../src/crawl/parser/xpath/XmlConverter";
-import { getDebugger } from "../../../resource/src/debugger";
+import { createDebugger } from "../../../resource/src/debugger";
 
-const debug = getDebugger("test:google-catalog-crawler");
+const debug = createDebugger("test:google-catalog-crawler");
 const markupFilePath = __dirname + "/../../../resource/data/live/google.html";
 
 chai.use(chaiSpies);
