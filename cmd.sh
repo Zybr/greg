@@ -67,6 +67,7 @@ case "$1" in
       echo -e "\e[32mstart\e[0m - Start application"
       echo -e "\e[32mstart -m\e[0m - Start application with mocked back"
       echo -e "\e[32mtests\e[0m - Run tests"
+      echo -e "\e[32mcodestyles\e[0m - Fix codestyle"
       echo -e "\e[32mroutes\e[0m - Show available routes"
       echo -e "\e[32mfixtures\e[0m - Fill DB"
 esac

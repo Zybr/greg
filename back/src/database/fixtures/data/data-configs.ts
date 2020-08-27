@@ -5,11 +5,11 @@ export default [
     {
         filePath: "./data/maps",
         model: Map,
-        showFields: ["name"],
+        reportedProps: ["name"],
     },
     {
         filePath: "./data/resources",
         model: Resource,
-        showFields: ["name", "url"],
+        reportedProps: ["name", "url"],
     },
 ];

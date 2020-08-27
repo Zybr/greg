@@ -18,4 +18,4 @@ export interface IMap extends Document {
     structure: string;
 }
 
-export default DB.model<IMap>("map", MapSchema);
+export default DB.model<IMap>("Map", MapSchema, "map");
