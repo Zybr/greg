@@ -3,5 +3,5 @@ back/node_modules/*
 back/dist
 back/config/test.js
 back/tests/resource/data/live/*
-front/node_modules
+front/node_modules/*
 front/dist

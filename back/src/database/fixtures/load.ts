@@ -22,6 +22,7 @@ Promise.all(configs.map(async (config) => { // Read configs
                 model: null,
                 properties,
             };
+            // @ts-ignore . TODO: Resolve
             story.model = (new config.model(properties)) // Save by data
                 .save()
                 .catch((err) => story.err = err);
@@ -47,9 +48,9 @@ Promise.all(configs.map(async (config) => { // Read configs
             batchResult.stories.forEach((story: { properties, err }) => { // Rows
                 let shownProperties = {};
 
-                if (batchResult.config.showFields) {
-                    for (const shownField of batchResult.config.showFields) {
-                        shownProperties[shownField] = story.properties[shownField];
+                if (batchResult.config.reportedProps) {
+                    for (const reportedFields of batchResult.config.reportedProps) {
+                        shownProperties[reportedFields] = story.properties[reportedFields];
                     }
                 } else {
                     shownProperties = story.properties;

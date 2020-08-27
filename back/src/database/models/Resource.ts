@@ -1,10 +1,10 @@
 import { Document, Schema } from "mongoose";
 import mongoose = require("mongoose");
-import { IMap, MapSchema } from "./Map";
+import Map, { IMap } from "./Map";
 
 export const ResourceSchema = new Schema({
     map: {
-        ref: MapSchema,
+        ref: "Map",
         required: true,
         type: Schema.Types.ObjectId,
     },
@@ -19,10 +19,17 @@ export const ResourceSchema = new Schema({
     },
 });
 
+function autoPopulate() {
+    this.populate("map");
+}
+
+ResourceSchema.pre("find", autoPopulate);
+ResourceSchema.pre("findOne", autoPopulate);
+
 export interface IResource extends Document {
-    map: IMap["_id"];
+    map: IMap;
     name: string;
     url: string;
 }
 
-export default mongoose.model("resource", ResourceSchema, "resource");
+export default mongoose.model<IResource>("Resource", ResourceSchema, "resource");

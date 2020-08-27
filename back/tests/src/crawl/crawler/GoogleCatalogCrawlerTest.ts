@@ -50,9 +50,7 @@ describe("GoogleCatalogCrawler [+ Parser, SelectorDecoder]", () => {
             ));
     });
 
-    after(() => {
-        chai.spy.restore();
-    });
+    after(() => chai.spy.restore());
 
     describe(".crawl()", () => {
         it("It should return stream of parsed pages.", async () => {
