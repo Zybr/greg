@@ -1,4 +1,3 @@
-import cookieParser = require("cookie-parser");
 import { Express } from "express";
 import express = require("express");
 import httpStatus = require("http-status-codes");
@@ -13,10 +12,13 @@ const responder = new Responder();
 
 // view engine setup
 
-app.use(logger("dev"));
+app.use(logger("dev")); // Log
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-app.use(cookieParser());
+app.use((req, res, next) => { // Disable CORS
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    next();
+});
 
 app.use("/", rootRouter);
 app.use("/maps", mapRouter);

@@ -16,6 +16,7 @@ module.exports = {
     },
     entry  : {
         search: srcJsPath + 'search.tsx',
+        main: srcJsPath + 'main.tsx',
     },
     output : {
         path             : distJsPath,

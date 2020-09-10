@@ -1,6 +1,6 @@
 import debugMod = require("debug");
 import http = require("http");
-import {app} from "../app";
+import { app } from "../app";
 
 const debug = debugMod("aggregator:server");
 

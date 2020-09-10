@@ -1,11 +1,11 @@
 import cookieParser = require("cookie-parser");
-import {Express} from "express";
+import { Express } from "express";
 import express = require("express");
 import createError = require("http-errors");
 import logger = require("morgan");
 import path = require("path");
-import {router as indexRouter} from "./routes/index";
-import {router as searchRouter} from "./routes/search";
+import { router as mainRoute } from "./routes/main";
+import { router as tstSearchRoute } from "./routes/test/search";
 
 const app: Express = express();
 
@@ -19,8 +19,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use("/public", express.static(path.join(__dirname, "dist")));
 
-app.use("/", indexRouter);
-app.use("/search", searchRouter);
+app.use("/", mainRoute);
+app.use("/test/search", tstSearchRoute);
 
 // catch 404 and forward to error handler
 app.use((request, response, next) => {
@@ -38,4 +38,4 @@ app.use((error, request, response, next) => {
     response.render("core/error");
 });
 
-export {app};
+export { app };

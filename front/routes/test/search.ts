@@ -6,4 +6,4 @@ router.get("/", (request, response) => {
     response.render("search/index");
 });
 
-export {router};
+export { router };

@@ -11,4 +11,4 @@ const config = {
 
 const backUrl = `${config.back.address.protocol}://${config.back.address.host}:${config.back.address.port}`;
 
-export {config, backUrl};
+export { config, backUrl };

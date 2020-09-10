@@ -3,7 +3,7 @@ import express = require("express");
 const router = express.Router();
 
 router.get("/", (request, response) => {
-    response.redirect("/search");
+    response.render("index");
 });
 
-export {router};
+export { router };
