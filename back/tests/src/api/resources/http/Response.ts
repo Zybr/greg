@@ -1,4 +1,6 @@
+import httpStatus = require("http-status-codes");
 import * as request from "superagent";
+import { errorSchema } from "../schemas";
 
 /** Response */
 export default class Response {
@@ -44,6 +46,35 @@ export default class Response {
      */
     public assertBodyEqual(body: object): this {
         this.response.body.should.be.deep.equal(body);
+        return this;
+    }
+
+    /**
+     * Check that response is "Bad request".
+     * @param message
+     */
+    public assertIsBadRequest(message: string = null): this {
+        this.assertStatus(httpStatus.BAD_REQUEST)
+            .assertBodySchema(errorSchema);
+        if (message) {
+            this.body.message.should.to.have.string(message);
+        }
+
+        return this;
+    }
+
+    /**
+     * Check that response is "Not found".
+     * @param message
+     */
+    public assertIsNotFound(message: string = null): this {
+        this.assertStatus(httpStatus.NOT_FOUND)
+            .assertBodySchema(errorSchema);
+
+        if (message) {
+            this.body.message.should.to.have.string(message);
+        }
+
         return this;
     }
 }

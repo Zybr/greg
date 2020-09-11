@@ -51,11 +51,11 @@ describe("CatalogCrawler [+ Parser, SelectorDecoder]", () => {
     });
 
     describe(".crawl()", () => {
-        it("Should throw exception when it is called before .setRequest().", () => {
+        it("Throw exception when it is called before .setRequest().", () => {
             chai.expect(() => crawler.crawl()).to.throw();
         });
 
-        it("Should emit content of page according selectors.", async () => {
+        it("Emit content of page according selectors.", async () => {
             debug(".setRequest()");
             crawler.setRequest(new Request(url));
             debug(".crawl()");
@@ -85,7 +85,7 @@ describe("CatalogCrawler [+ Parser, SelectorDecoder]", () => {
     });
 
     describe(".stop()", () => {
-        it("Should stop crawling.", () => {
+        it("Stop crawling.", () => {
             const maxIteration = 2;
             let curIteration = 0;
 
@@ -110,7 +110,7 @@ describe("CatalogCrawler [+ Parser, SelectorDecoder]", () => {
     });
 
     describe(".setRequest()", () => {
-        it("Should return self.", () => {
+        it("Return self.", () => {
             crawler.setRequest(new Request(url)).should.be.instanceof(CatalogCrawler);
         });
     });

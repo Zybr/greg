@@ -1,6 +1,10 @@
 import { Document, Schema } from "mongoose";
-import mongoose = require("mongoose");
+import db from "../db";
 import Map, { IMap } from "./Map";
+
+const validateParameterList = (list: any) => (!(list instanceof Object))
+    ? false
+    : Object.values(list).every((value) => "string" === typeof value);
 
 export const ResourceSchema = new Schema({
     map: {
@@ -12,6 +16,11 @@ export const ResourceSchema = new Schema({
         required: true,
         type: String,
         unique: true,
+    },
+    parameters: {
+        required: true,
+        type: Object,
+        validate: validateParameterList,
     },
     url: {
         required: true,
@@ -32,4 +41,4 @@ export interface IResource extends Document {
     url: string;
 }
 
-export default mongoose.model<IResource>("Resource", ResourceSchema, "resource");
+export default db.model<IResource>("Resource", ResourceSchema, "resource");

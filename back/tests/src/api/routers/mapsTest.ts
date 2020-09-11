@@ -1,22 +1,24 @@
 import faker = require("faker/locale/en");
 import httpStatus = require("http-status-codes");
 import Client from "../resources/http/Client";
-import { errorSchema, mapListSchema, mapSchema } from "../resources/schemas";
+import { mapListSchema, mapSchema } from "../resources/schemas";
 
 const client = new Client();
 
 describe("routers/maps", () => {
     let modelIds: string[];
+    let invalidIdUrl = "";
 
     before(async () => {
         modelIds = (await client.get("/maps")
             .send())
             .body.data
             .map((model) => model.id);
+        invalidIdUrl = `/resources/${(modelIds[0]).replace(/./, "0")}`;
     });
 
     describe("GET /maps", () => {
-        it("Should return list of maps.", async () => {
+        it("Return list of maps.", async () => {
             const body = (await client.get("/maps")
                 .send()).body;
             (await client.get("/maps")
@@ -27,7 +29,7 @@ describe("routers/maps", () => {
     });
 
     describe("GET /maps/:id", () => {
-        it("Should return a map.", async () => {
+        it("Return a map.", async () => {
             (await client.get(`/maps/${modelIds.shift()}`)
                 .send())
                 .assertStatus(httpStatus.OK)
@@ -36,7 +38,7 @@ describe("routers/maps", () => {
     });
 
     describe("POST /maps", () => {
-        it("Should create a map.", async () => {
+        it("Create a map.", async () => {
             const createData = (await client.post(`/maps`)
                 .send({
                     name: faker.lorem.words(2),
@@ -53,7 +55,7 @@ describe("routers/maps", () => {
     });
 
     describe("PUT /maps", () => {
-        it("Should return updated map.", async () => {
+        it("Return updated map.", async () => {
             const id = modelIds.shift();
             const modelData = {
                 name: faker.lorem.words(3),
@@ -67,7 +69,7 @@ describe("routers/maps", () => {
     });
 
     describe("DELETE /maps:id", () => {
-        it("Should remove map.", async () => {
+        it("Remove map.", async () => {
             const id = modelIds.shift();
             (await client.get(`/maps/${id}`)
                 .send())
@@ -82,36 +84,32 @@ describe("routers/maps", () => {
     });
 
     describe("Negative", () => {
-        it('Should return "Bad Request" on creation without params.', async () => {
+        it('Return "Bad Request" on creation without params.', async () => {
             (await client.post(`/maps`)
                 .send())
-                .assertStatus(httpStatus.BAD_REQUEST)
-                .assertBodySchema(errorSchema);
+                .assertIsBadRequest();
         });
 
-        it('Should return "Bab Request" on updating without params.', async () => {
+        it('Return "Bab Request" on updating without params.', async () => {
             (await client.put(`/maps/${modelIds.shift()}`)
                 .send())
-                .assertStatus(httpStatus.BAD_REQUEST)
-                .assertBodySchema(errorSchema);
+                .assertIsBadRequest();
         });
 
-        it('Should return "Not Found" on fetching by invalid ID.', async () => {
-            (await client.get(`/maps/${(modelIds[0]).replace(/./, "0")}`)
+        it('Return "Not Found" on fetching by invalid ID.', async () => {
+            (await client.get(invalidIdUrl)
                 .send())
-                .assertStatus(httpStatus.NOT_FOUND)
-                .assertBodySchema(errorSchema);
+                .assertIsNotFound();
         });
 
-        it('Should return "Not Found" on updating by invalid ID.', async () => {
-            (await client.put(`/maps/${(modelIds[0]).replace(/./, "0")}`)
+        it('Return "Not Found" on updating by invalid ID.', async () => {
+            (await client.put(invalidIdUrl)
                 .send())
-                .assertStatus(httpStatus.NOT_FOUND)
-                .assertBodySchema(errorSchema);
+                .assertIsNotFound();
         });
 
-        it('Should return "OK" on removing by invalid ID.', async () => {
-            (await client.delete(`/maps/${(modelIds[0]).replace(/./, "0")}`)
+        it('Return "OK" on removing by invalid ID.', async () => {
+            (await client.delete(invalidIdUrl)
                 .send())
                 .assertStatus(httpStatus.OK);
         });

@@ -59,8 +59,8 @@ describe("selector/Parser [+ SelectorDecoder]", () => {
     const parser: Parser = new Parser(new SelectorDecoder(), selectorsMap);
     const content = readFileSync(`${pathTestData}markup/elements.html`).toString();
 
-    describe(".parse()", () => {
-        it("Should promise result according request.", async () => {
+    describe(".parse()", async () => {
+        await it("Should promise result according request.", async () => {
             debug({selectorsMap});
             debug(".parse()");
             const result: {

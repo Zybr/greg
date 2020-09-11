@@ -1,7 +1,7 @@
 import serializer from "express-serializer";
 import httpStatus = require("http-status-codes");
 import { Document } from "mongoose";
-import db from "../../database/DB";
+import db from "../../database/db";
 import NotFoundError from "../errors/NotFoundError";
 import { Responder } from "../Responder";
 import { ISerialize, serializeModel } from "../serialization/serialization";

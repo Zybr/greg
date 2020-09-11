@@ -1,5 +1,5 @@
 import { Document, Schema } from "mongoose";
-import DB from "../DB";
+import db from "../db";
 
 export const MapSchema = new Schema({
     name: {
@@ -18,4 +18,4 @@ export interface IMap extends Document {
     structure: string;
 }
 
-export default DB.model<IMap>("Map", MapSchema, "map");
+export default db.model<IMap>("Map", MapSchema, "map");

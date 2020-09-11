@@ -1,11 +1,11 @@
 import { Colorizer } from "../../core/Colorizer";
-import mongoose from "../DB";
+import db from "../db";
 import { default as configs } from "./data/data-configs";
 
 Colorizer.color();
 
 if ("renew" === process.argv.pop()) { // Clear DB
-    mongoose.connection.dropDatabase();
+    db.connection.dropDatabase();
 }
 
 Promise.all(configs.map(async (config) => { // Read configs
@@ -24,6 +24,7 @@ Promise.all(configs.map(async (config) => { // Read configs
             };
             // @ts-ignore . TODO: Resolve
             story.model = (new config.model(properties)) // Save by data
+                // @ts-ignore
                 .save()
                 .catch((err) => story.err = err);
 

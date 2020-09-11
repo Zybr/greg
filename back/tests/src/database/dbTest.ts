@@ -8,8 +8,8 @@ should();
 
 describe("DB", () => {
     describe("Initialize", () => {
-        it("Should give DB", () => {
-            import("../../../src/database/DB").then((params) => {
+        it("Give DB", () => {
+            import("../../../src/database/db").then((params) => {
                 params.default.connection.should.be.an.instanceOf(mongoose.connection.constructor);
             });
         });
