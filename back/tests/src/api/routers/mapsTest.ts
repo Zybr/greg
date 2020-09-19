@@ -19,8 +19,6 @@ describe("routers/maps", () => {
 
     describe("GET /maps", () => {
         it("Return list of maps.", async () => {
-            const body = (await client.get("/maps")
-                .send()).body;
             (await client.get("/maps")
                 .send())
                 .assertStatus(httpStatus.OK)

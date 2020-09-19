@@ -53,7 +53,7 @@ describe("GoogleCatalogCrawler [+ Parser, SelectorDecoder]", () => {
     after(() => chai.spy.restore());
 
     describe(".crawl()", () => {
-        // TODO: Fix "Uncaught AssertionError: expected 2 to equal 3"
+        // TODO: Fix random "Uncaught AssertionError: expected 2 to equal 3"
         it.skip("Return stream of parsed pages.", async () => {
             debug({crawlerConfig});
             crawler.crawl()
