@@ -1,4 +1,5 @@
 import { Document, Schema } from "mongoose";
+import uniqueValidator from "mongoose-unique-validator";
 import db from "../db";
 import Map, { IMap } from "./Map";
 
@@ -9,7 +10,7 @@ const validateParameterList = (list: any) => (!(list instanceof Object))
 export const ResourceSchema = new Schema({
     map: {
         ref: "Map",
-        required: true,
+        required: false,
         type: Schema.Types.ObjectId,
     },
     name: {
@@ -27,6 +28,8 @@ export const ResourceSchema = new Schema({
         type: String,
     },
 });
+
+ResourceSchema.plugin(uniqueValidator);
 
 function autoPopulate() {
     this.populate("map");

@@ -1,3 +1,4 @@
+import cors from "cors";
 import { Express } from "express";
 import express = require("express");
 import httpStatus = require("http-status-codes");
@@ -10,21 +11,16 @@ import resourceRouter from "./src/api/routers/resources";
 const app: Express = express();
 const responder = new Responder();
 
-// view engine setup
-
-app.use(logger("dev")); // Log
+app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
-app.use((req, res, next) => { // Disable CORS
-    res.setHeader("Access-Control-Allow-Origin", "*");
-    next();
-});
+app.use(cors());
 
 app.use("/", rootRouter);
 app.use("/maps", mapRouter);
 app.use("/resources", resourceRouter);
 
-// error handler
+// Error handler
 app.use((err, req, res, next) => {
     res.locals.message = err.message;
     res.locals.error = req.app.get("env") === "development" ? err : {};

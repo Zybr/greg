@@ -22,6 +22,11 @@ export default class Client {
     }
 
     /** Initialize POST request. */
+    public crateRequest(url: string, method: "get" | "post" | "put" | "patch" | "delete"): Request {
+        return new Request(this.http[method.toLowerCase()](url));
+    }
+
+    /** Initialize POST request. */
     public post(url: string): Request {
         return new Request(this.http.post(url));
     }

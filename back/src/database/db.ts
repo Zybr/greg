@@ -1,5 +1,5 @@
 import db = require("mongoose");
-import config = require("../../resource/config/db");
+import config = require("../../resource/configs/db");
 
 /** Configure database connection */
 db.connect(config.url, config.options);
