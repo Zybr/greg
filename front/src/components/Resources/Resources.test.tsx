@@ -1,22 +1,18 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import Resources from './Resources';
-import faker from "faker";
-import { Resource } from "../../models/Resource";
+import { Provider } from 'react-redux';
+import store from "../../store";
+import Resources from "./Resources";
 
-const models = [{
-    id: 1,
-    name: faker.lorem.word(),
-}] as unknown as Resource[];
-
-
-describe('<Resources />', () => {
+describe('<Resources/>', () => {
     test('it should mount', () => {
-        render(<Resources resources={models}/>);
+        render(
+            <Provider store={store}>
+                <Resources/>
+            </Provider>
+        );
 
-        const resources = screen.getByTestId('Resources');
-
-        expect(resources).toBeInTheDocument();
+        expect(screen.getByTestId('Resources')).toBeInTheDocument();
     });
 });

@@ -1,24 +1,19 @@
-import { Action } from "../Action";
+import { Actions, ErrorAction } from "../actions";
 import { Resource } from "../../models/Resource";
 
-export interface ResourceAction extends Action {
+export interface ResourceAction extends Actions {
     type: string,
     payload: Resource,
 }
 
-export interface ResourcesAction extends Action {
+export interface ResourcesAction extends Actions {
     type: string,
     payload: Resource[],
 }
 
-export interface ResourceRemoveAction extends Action {
+export interface ResourceRemoveAction extends Actions {
     type: string,
     id: string,
 }
 
-export interface ResourceErrorAction extends Action {
-    type: string,
-    error: Error,
-}
-
-export type ResourceActTypes = ResourceAction | ResourcesAction | ResourceRemoveAction | ResourceErrorAction;
+export type ResourceActTypes = ResourceAction | ResourcesAction | ResourceRemoveAction | ErrorAction;

@@ -11,7 +11,10 @@ export interface Resource {
 }
 
 export interface ResourceCreate {
-    map: string | null;
     name: string;
     url: string;
+    parameters: {
+        [key: string]: string,
+    }
+    map?: string;
 }

@@ -1,20 +1,21 @@
 import { Resource } from "../models/Resource";
 import * as types from "../actions/resources/act-types";
-import { ResourceActTypes, ResourceErrorAction } from "../actions/resources/ResourceActTypes";
+import { ResourceActTypes, ResourceRemoveAction } from "../actions/resources/ResourceActTypes";
+import { ErrorAction } from "../actions/actions";
 
 export default function resources(state: Resource[] = [], action: ResourceActTypes): Resource[] {
     switch (action.type) {
-        case types.ADD_RESOURCE:
+        case types.REQUEST_RESOURCES_SUCCESS:
+            return [...action.payload];
+        case types.REQUEST_CREATE_RESOURCE_SUCCESS:
             return [...state, action.payload];
+        case types.REQUEST_REMOVE_RESOURCE_SUCCESS:
+            return [...state].filter((resource) => resource.id !== (action as ResourceRemoveAction).id);
         case types.UPDATE_RESOURCE:
             return [...state].map((resource) => resource.id === action.payload.id ? action.payload : resource);
-        case types.REMOVE_RESOURCE:
-            return [...state].filter((resource) => resource.id !== action.payload.id);
-        case types.FETCH_RESOURCES_SUCCESS:
-            return [...action.payload];
-        case types.FETCH_RESOURCES_FAILURE:
-            console.error((action as ResourceErrorAction).error)
-            return state;
+        case types.REQUEST_RESOURCES_FAIL:
+        case types.REQUEST_CREATE_RESOURCE_FAIL:
+        case types.REQUEST_REMOVE_RESOURCE_FAIL:
         default:
             return state;
     }

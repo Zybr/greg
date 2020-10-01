@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.scss';
-import ResourcesSection from "../ResourcesSection/ResourcesSection.lazy";
 import { Container } from '@material-ui/core';
+import ResourcesContainer from "../ResourcesContainer/ResourcesContainer";
 
 function App() {
     return (
         <div className="App" data-testid="App">
             <Container>
-                <ResourcesSection/>
+                <ResourcesContainer/>
             </Container>
         </div>
     );
