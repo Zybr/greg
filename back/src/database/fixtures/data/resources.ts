@@ -15,5 +15,13 @@ export default new Array(5)
             }, 1);
         }),
         name: faker.lorem.word(),
+        parameters: (() => {
+            const params = {};
+            for (let i = 0; i < faker.random.number(5); i++) {
+                params[faker.lorem.word()] = faker.lorem.word();
+            }
+
+            return params;
+        })(),
         url: faker.internet.url(),
     }));

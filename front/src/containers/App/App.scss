@@ -1,0 +1,10 @@
+Body {
+  background: #f0f0f0;
+
+  .MuiGrid-item {
+    border: 1px solid silver;
+    > * {
+      background: white;
+    }
+  }
+}

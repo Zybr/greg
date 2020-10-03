@@ -1,5 +1,6 @@
 import { Document, Schema } from "mongoose";
-import DB from "../DB";
+import uniqueValidator from "mongoose-unique-validator";
+import db from "../db";
 
 export const MapSchema = new Schema({
     name: {
@@ -13,9 +14,11 @@ export const MapSchema = new Schema({
     },
 });
 
+MapSchema.plugin(uniqueValidator);
+
 export interface IMap extends Document {
     name: string;
     structure: string;
 }
 
-export default DB.model<IMap>("Map", MapSchema, "map");
+export default db.model<IMap>("Map", MapSchema, "map");

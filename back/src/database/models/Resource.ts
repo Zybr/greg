@@ -1,11 +1,16 @@
 import { Document, Schema } from "mongoose";
-import mongoose = require("mongoose");
+import uniqueValidator from "mongoose-unique-validator";
+import db from "../db";
 import Map, { IMap } from "./Map";
+
+const validateParameterList = (list: any) => (!(list instanceof Object))
+    ? false
+    : Object.values(list).every((value) => "string" === typeof value);
 
 export const ResourceSchema = new Schema({
     map: {
         ref: "Map",
-        required: true,
+        required: false,
         type: Schema.Types.ObjectId,
     },
     name: {
@@ -13,11 +18,18 @@ export const ResourceSchema = new Schema({
         type: String,
         unique: true,
     },
+    parameters: {
+        required: true,
+        type: Object,
+        validate: validateParameterList,
+    },
     url: {
         required: true,
         type: String,
     },
 });
+
+ResourceSchema.plugin(uniqueValidator);
 
 function autoPopulate() {
     this.populate("map");
@@ -32,4 +44,4 @@ export interface IResource extends Document {
     url: string;
 }
 
-export default mongoose.model<IResource>("Resource", ResourceSchema, "resource");
+export default db.model<IResource>("Resource", ResourceSchema, "resource");

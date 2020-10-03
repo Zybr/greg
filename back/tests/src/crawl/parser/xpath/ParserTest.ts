@@ -59,7 +59,7 @@ describe("xpath/Parser", () => {
     const content = readFileSync(`${pathTestData}markup/elements.html`).toString();
 
     describe(".parse() [+ XmlConverter, CollectionModifier, NodeModifier, SelectorDecoder]", () => {
-        it("Should promise result according request.", async () => {
+        it("Promise result according request.", async () => {
             debug(".parse()");
             debug("selectors", selectorsMap);
 

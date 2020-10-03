@@ -31,7 +31,7 @@ describe("xpath/DataModifier", () => {
     const node = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
     describe(".convert()", () => {
-        it("Should apply modifiers to node.", async () => {
+        it("Apply modifiers to node.", async () => {
             debug({node, modifiers});
             const result = nodeModifier.convert(node, modifiers);
             debug({result});

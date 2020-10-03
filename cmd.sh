@@ -32,10 +32,7 @@ case "$1" in
       & (sleep 1 \
         && echo  -e "\n\e[32mFront\e[0m" \
         && echo  -e "\n\e[32mStar server & build web\e[0m" \
-        && (
-          npm start --prefix "$DIR"/front/ \
-          & npm run build --prefix "$DIR"/front/
-        )
+        && npm start --prefix "$DIR"/front/
       )
       ;;
 

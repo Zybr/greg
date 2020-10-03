@@ -8,8 +8,7 @@ Colorizer.color();
 
 describe("CrawlerFactory", () => {
     describe(".getCrawler()", () => {
-        it(
-            "Should return crawler for google.",
+        it("Return crawler for google.",
             () => CrawlerFactory.getCrawler(CrawlerFactory.GOOGLE_CRAWLER).should.be.instanceof(GoogleCatalogCrawler),
         );
     });

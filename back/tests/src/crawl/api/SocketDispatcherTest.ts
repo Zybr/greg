@@ -102,7 +102,7 @@ describe("SocketDispatcherMock.", () => {
             events.created,
         ];
 
-        it(`Should get events:\n\t ${expectedEvents.join("\n\t ")}`, async () => {
+        it(`Get events:\n\t ${expectedEvents.join("\n\t ")}`, async () => {
             const server = new ServerMock();
             const client = server.getClient();
             dispatcher = new SocketDispatcher(server as unknown as io.Server);
@@ -138,7 +138,7 @@ describe("SocketDispatcherMock.", () => {
             events.complete,
         ];
 
-        it(`Should get events:\n\t ${expectedEvents.join("\n\t ")}`, async () => {
+        it(`Get events:\n\t ${expectedEvents.join("\n\t ")}`, async () => {
             const server = new ServerMock();
             const client = server.getClient();
             const crawler = mockCrawler();
@@ -192,7 +192,7 @@ describe("SocketDispatcherMock.", () => {
             events.stopped,
         ];
 
-        it(`Should get events:\n\t ${expectedEvents.join("\n\t ")}`, async () => {
+        it(`Get events:\n\t ${expectedEvents.join("\n\t ")}`, async () => {
             const server = new ServerMock();
             const client = server.getClient();
             const crawler = mockCrawler();
@@ -262,7 +262,7 @@ describe("SocketDispatcherMock.", () => {
             events.error,
         ];
 
-        it(`Should get events:\n\t ${expectedEvents.join("\n\t ")}`, async () => {
+        it(`Get events:\n\t ${expectedEvents.join("\n\t ")}`, async () => {
             const server = new ServerMock();
             const client = server.getClient();
             dispatcher = new SocketDispatcher(server as unknown as io.Server);

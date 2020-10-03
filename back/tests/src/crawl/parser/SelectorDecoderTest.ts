@@ -19,7 +19,7 @@ describe("SelectorDecoder", () => {
     };
 
     describe(".disassembleSelectors()", () => {
-        it("Should decode selector.", async () => {
+        it("Decode selector.", async () => {
             debug({selector});
             const daSelector: IDaSelector = decoder.disassembleSelector(selector);
             debug({daSelector});
